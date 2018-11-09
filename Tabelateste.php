@@ -1,20 +1,15 @@
 <?php
-var table = $('monthly-table');
 
-$('table tr').each(function(){
-var number = $('.name').html();
-alert(name);
 
-});
+
 ?>
-
 <! DOCTYPE HTML>
 <html>
 <head>
      <meta charset="UTF-8"/>
      <title>H&A Weekly QHI (RAC)</title>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  </head>
 <body>
 
@@ -42,68 +37,79 @@ alert(name);
    <td rowspan="6" style="text-align: center; vertical-align: middle">Market</td>
    <td rowspan="3" style="text-align: center; vertical-align: middle">FFR (Edmilson)</td>
    <td>'17</td>
-   <td class="number">2,62</td>
-   <td class="number">2,31</td>
-   <td class="number">2,18</td>
-   <td class="number">2,29</td>
-   <td class="number">2,48</td>
-   <td class="number">2,42</td>
-   <td class="number">2,23</td>
-   <td class="number">2,12</td>
-   <td class="number">2,07</td>
-   <td class="number">1,97</td>
-   <td class="number">1,80</td>
-   <td class="number">1,72</td>
+   <td class="ly">2,62</td> <!-- ly = last year-->
+   <td class="ly">2,31</td>
+   <td class="ly">2,18</td>
+   <td class="ly">2,29</td>
+   <td class="ly">2,48</td>
+   <td class="ly">2,42</td>
+   <td class="ly">2,23</td>
+   <td class="ly">2,12</td>
+   <td class="ly">2,07</td>
+   <td class="ly">1,97</td>
+   <td class="ly">1,80</td>
+   <td class="ly">1,72</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="number">1,67</td>
-   <td class="number">1,56</td>
-   <td class="number">1,50</td>
-   <td class="number">1,52</td>
-   <td class="number">1,48</td>
-   <td class="number">1,47</td>
-   <td class="number">1,48</td>
-   <td class="number">1,44</td>
-   <td class="number">1,44</td>
-   <td class="number">1,39</td>
-   <td></td>
-   <td></td>
+   <td class="py">1,67</td> <!-- py = present year-->
+   <td class="py">1,56</td>
+   <td class="py">1,50</td>
+   <td class="py">1,52</td>
+   <td class="py">1,48</td>
+   <td class="py">1,47</td>
+   <td class="py">1,48</td>
+   <td class="py">1,44</td>
+   <td class="py">1,44</td>
+   <td class="py">1,39</td>
+   <td class="py"></td>
+   <td class="py"></td>
   </tr>
   <tr style="text-align: center;">
    <td>Improvement</td> <!-- ((17' - 18')/17')*100 -->
-   <td>Taxa <img width="20px" src="upgreen.svg" alt="Logo" /></td>
+   <td class="impr">Taxa </td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
+   <td class="impr"></td>
   </tr>
   <tr style="text-align: center;">
    <td rowspan="3" style="text-align: center; vertical-align: middle">FCR (Edmilson)</td>
    <td>'17</td>
-   <td class="number">1,01</td>
-   <td class="number">1,22</td>
-   <td class="number">1,45</td>
-   <td class="number">1,56</td>
-   <td class="number">1,60</td>
-   <td class="number">1,57</td>
-   <td class="number">1,49</td>
-   <td class="number">1,40</td>
-   <td class="number">1,28</td>
-   <td class="number">1,14</td>
-   <td class="number">1,06</td>
-   <td class="number">1,04</td>
+   <td class="ly">1,01</td>
+   <td class="ly">1,22</td>
+   <td class="ly">1,45</td>
+   <td class="ly">1,56</td>
+   <td class="ly">1,60</td>
+   <td class="ly">1,57</td>
+   <td class="ly">1,49</td>
+   <td class="ly">1,40</td>
+   <td class="ly">1,28</td>
+   <td class="ly">1,14</td>
+   <td class="ly">1,06</td>
+   <td class="ly">1,04</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="number">0,76</td>
-   <td class="number">0,87</td>
-   <td class="number">0,95</td>
-   <td class="number">1,21</td>
-   <td class="number">1,33</td>
-   <td class="number">1,24</td>
-   <td class="number">1,18</td>
-   <td class="number">1,13</td>
-   <td class="number">1,09</td>
-   <td class="number">1,05</td>
-   <td class="number"></td>
-   <td class="number"></td>
+   <td class="py">0,76</td>
+   <td class="py">0,87</td>
+   <td class="py">0,95</td>
+   <td class="py">1,21</td>
+   <td class="py">1,33</td>
+   <td class="py">1,24</td>
+   <td class="py">1,18</td>
+   <td class="py">1,13</td>
+   <td class="py">1,09</td>
+   <td class="py">1,05</td>
+   <td class="py"></td>
+   <td class="py"></td>
   </tr>
   <tr style="text-align: center;">
    <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
@@ -113,31 +119,31 @@ alert(name);
    <td rowspan="9" style="text-align: center; vertical-align: middle">Production</td>
    <td rowspan="3" style="text-align: center; vertical-align: middle">PRR (Jessylane)</td>
    <td>'17</td>
-   <td class="number">0</td>
-   <td class="number">10</td>
-   <td>91</td>
-   <td class="number">140</td>
-   <td class="number">259</td>
-   <td class="number">295</td>
-   <td class="number">299</td>
-   <td class="number">379</td>
-   <td class="number">395</td>
-   <td class="number">453</td>
-   <td class="number">494</td>
-   <td class="number">531</td>
+   <td class="ly">0</td>
+   <td class="ly">10</td>
+   <td class="ly">91</td>
+   <td class="ly">140</td>
+   <td class="ly">259</td>
+   <td class="ly">295</td>
+   <td class="ly">299</td>
+   <td class="ly">379</td>
+   <td class="ly">395</td>
+   <td class="ly">453</td>
+   <td class="ly">494</td>
+   <td class="ly">531</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="number">728</td>
-   <td class="number">712</td>
-   <td class="number">636</td>
-   <td class="number">579</td>
-   <td class="number">567</td>
-   <td class="number">564</td>
-   <td class="number">501</td>
-   <td class="number">486</td>
-   <td class="number">479</td>
-   <td class="number">482</td>
+   <td class="py">728</td>
+   <td class="py">712</td>
+   <td class="py">636</td>
+   <td class="py">579</td>
+   <td class="py">567</td>
+   <td class="py">564</td>
+   <td class="py">501</td>
+   <td class="py">486</td>
+   <td class="py">479</td>
+   <td class="py">482</td>
    <td></td>
    <td></td>
   </tr>
@@ -148,31 +154,31 @@ alert(name);
   <tr style="text-align: center;">
   <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR (Mateus + Vanessa)</td>
    <td>'17</td>
-   <td class="number">3648</td>
-   <td class="number">3597</td>
-   <td class="number">3322</td>
-   <td class="number">140</td>
-   <td class="number">259</td>
-   <td class="number">295</td>
-   <td class="number">299</td>
-   <td class="number">379</td>
-   <td class="number">395</td>
-   <td class="number">453</td>
-   <td class="number">494</td>
-   <td class="number">531</td>
+   <td class="ly">3648</td>
+   <td class="ly">3597</td>
+   <td class="ly">3322</td>
+   <td class="ly">140</td>
+   <td class="ly">259</td>
+   <td class="ly">295</td>
+   <td class="ly">299</td>
+   <td class="ly">379</td>
+   <td class="ly">395</td>
+   <td class="ly">453</td>
+   <td class="ly">494</td>
+   <td class="ly">531</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="number">2210</td>
-   <td class="number">2051</td>
-   <td class="number">2322</td>
-   <td class="number">2277</td>
-   <td class="number">567</td>
-   <td class="number">564</td>
-   <td class="number">501</td>
-   <td class="number">486</td>
-   <td class="number">479</td>
-   <td class="number">482</td>
+   <td class="py">2210</td>
+   <td class="py">2051</td>
+   <td class="py">2322</td>
+   <td class="py">2277</td>
+   <td class="py">567</td>
+   <td class="py">564</td>
+   <td class="py">501</td>
+   <td class="py">486</td>
+   <td class="py">479</td>
+   <td class="py">482</td>
    <td></td>
    <td></td>
   </tr>
@@ -183,31 +189,31 @@ alert(name);
   <tr style="text-align: center;">
   <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR (Edmilson)</td>
    <td>'17</td>
-   <td class="number">0,56</td>
-   <td class="number">0,0</td>
-   <td class="number">0,31</td>
-   <td class="number">0,24</td>
-   <td class="number">2,87</td>
-   <td class="number">0,34</td>
-   <td class="number">2,72</td>
-   <td class="number">0,22</td>
-   <td class="number">0,14</td>
-   <td class="number">0,85</td>
-   <td class="number">0,00</td>
-   <td class="number">0,22</td>
+   <td class="ly">0,56</td>
+   <td class="ly">0,0</td>
+   <td class="ly">0,31</td>
+   <td class="ly">0,24</td>
+   <td class="ly">2,87</td>
+   <td class="ly">0,34</td>
+   <td class="ly">2,72</td>
+   <td class="ly">0,22</td>
+   <td class="ly">0,14</td>
+   <td class="ly">0,85</td>
+   <td class="ly">0,00</td>
+   <td class="ly">0,22</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="number">0,56</td>
-   <td class="number">0,0</td>
-   <td class="number">0,31</td>
-   <td class="number">0,24</td>
-   <td class="number">2,87</td>
-   <td class="number">0,34</td>
-   <td class="number">2,72</td>
-   <td class="number">0,22</td>
-   <td class="number">0,14</td>
-   <td class="number">0,85</td>
+   <td class="py">0,56</td>
+   <td class="py">0,0</td>
+   <td class="py">0,31</td>
+   <td class="py">0,24</td>
+   <td class="py">2,87</td>
+   <td class="py">0,34</td>
+   <td class="py">2,72</td>
+   <td class="py">0,22</td>
+   <td class="py">0,14</td>
+   <td class="py">0,85</td>
    <td></td>
    <td></td>
   </tr>
@@ -505,7 +511,7 @@ alert(name);
   </tr>
   <tr style="text-align: center;">
       <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
-      <td style="text-align: center";>Primeira linha</td>
+      <td colspan="2" style="text-align: center";>Primeira linha</td>
       <td class="number">0</td>
       <td class="number">0</td>
       <td class="number">0</td>
@@ -515,6 +521,21 @@ alert(name);
       <td class="number">0</td>
       <td></td>
       <td>-</td>
+      <td>-</td>
+      <td>-</td>
+   <td>- </td>
+   <td>-</td>
+  </tr>
+  <tr style="text-align: center;">
+      <td colspan="2" style="text-align: center";>CEO Information Reporting</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td></td>
       <td>-</td>
       <td>-</td>
    <td>- </td>
@@ -522,24 +543,7 @@ alert(name);
    <td>-</td>
   </tr>
   <tr style="text-align: center;">
-      <td style="text-align: center";>CEO Information Reporting</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-   <td>- </td>
-   <td>- </td>
-   <td>-</td>
-  </tr>
-  <tr style="text-align: center;">
-      <td style="text-align: center";>Terceira linha</td>
+      <td colspan="2" style="text-align: center";>Terceira linha</td>
       <td>-</td>
       <td>-</td>
       <td>-</td>
@@ -548,7 +552,6 @@ alert(name);
       <td>-</td>
       <td>-</td>
       <td></td>
-      <td>-</td>
       <td>-</td>
       <td>-</td>
    <td>- </td>
@@ -558,9 +561,9 @@ alert(name);
   <tr style="text-align: center;">
     <b>
       <td colspan="3">Total</td>
-    <td colspan="6"></td>
+    <td colspan="7"></td>
     <td class="number">2229</td>
-    <td colspan="3"></td>
+    <td colspan="2"></td>
     <td class="number">81</td>
     <td class="number">81%</td>
     <td class="number">100</td>
@@ -573,5 +576,25 @@ alert(name);
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script>
+       var mtable = $('monthly-table');
+      
+
+      mtable.find('tr').each(function(indice){
+      var lastyear = $(this).find('.ly').text(),
+      presentyear = $(this).find('.py').text();
+// ((17' - 18')/17')*100
+      var result = ((lastyear-presentyear)/lastyear)*100;
+      if (result > 0){
+        $(this).find('.impr').text(result + "% <img width="20px" src="downgreen.svg" alt="Logo" />");
+      }elseif (result == 0){
+        $(this).find('.impr').text(result + "% <img width="20px" src="squareblack.svg" alt="Logo" />");
+      }else{
+        $(this).find('.impr').text(result + "% <img width="20px" src="upred.svg" alt="Logo" />");
+      }
+    }
+  
+     </script>
 </body>
 </html>
