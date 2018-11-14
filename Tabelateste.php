@@ -402,6 +402,8 @@
   </tr>
  </tbody>
 </table>
+
+
  <h1>H&A Weekly QHI Tabela 2</h1>
  <table id="weekly-table" class="table table-striped table-bordered table-condensed table-hover">
  <thead>
@@ -425,7 +427,7 @@
   </tr>
  </thead>
  <tbody>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class ="FFR">
    <td rowspan="6" style="vertical-align: middle">Market</td>
    <td rowspan="3" style="vertical-align: middle">FFR (Edmilson)</td>
    <td>SVC Number</td>
@@ -440,7 +442,7 @@
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" style="color: green">x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="FFR">
    <td>Weighted cumulative spectral</td>
    <td class="lp">138,474  </td>
    <td>     </td>
@@ -453,7 +455,7 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> 17% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="FFR">
    <td>Failure Field Rate </td> <!-- ((up/down)*100) -->
    <td class="lp">1.97</td>
    <td>1.90</td>
@@ -469,10 +471,10 @@
    <td >100% </td>
    <td>35</td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="FCR">
    <td rowspan="3" style="vertical-align: middle">FCR (Edmilson)</td>
    <td>Failure cost</td>
-   <td>63,5</td>
+   <td class="lp">63,5</td>
    <td>60,4</td>
    <td>13,0</td>
    <td>14,6</td>
@@ -483,9 +485,9 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="FCR">
    <td>Sales</td>
-   <td>14.528,7</td>
+   <td class="lp">14.528,7</td>
    <td>13.802,3</td>
    <td>235,2</td>
    <td>###</td>
@@ -496,9 +498,9 @@
    <td><img width="20px" src="circlered.svg" alt="Logo" /> </td>
    <td style="color: red"> 298% <img width="20px" src="upred.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="FCR">
    <td>Failure Cost Rate </td> <!-- ((up/down)*100) -->
-   <td>0.44</td>
+   <td class="lp">0.44</td>
    <td>0.44</td>
    <td>5,53</td>
    <td>1.02</td>
@@ -512,11 +514,11 @@
    <td style="vertical-align: bottom;">20% </td>
    <td>20</td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class ="PRR">
    <td rowspan="9" style="vertical-align: middle">Production</td>
    <td rowspan="3" style="vertical-align: middle">PRR (Jessylane)</td>
    <td>Poor parts quantity</td>
-   <td>54</td>
+   <td class="lp">54</td>
    <td></td>
    <td>0</td>
    <td>6</td>
@@ -527,9 +529,9 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class ="PRR">
    <td>Production quantity</td>
-   <td>70.511</td>
+   <td class="lp">70.511</td>
    <td></td>
    <td>4.191</td>
    <td>5.002</td>
@@ -540,9 +542,9 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class ="PRR">
       <td>Parts Return Rate</td>
-   <td>766</td>
+   <td class="lp">766</td>
    <td>454</td>
    <td>0</td>
    <td>1.200</td>
@@ -556,10 +558,10 @@
    <td>20%</td>
    <td>15</td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="TLDR">
   <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR (Mateus + Vanessa)</td>
    <td>Poor parts quantity</td>
-   <td>131</td>
+   <td class="lp">131</td>
    <td></td>
    <td>11</td>
    <td>7</td>
@@ -570,8 +572,8 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
-   <td>Total production quantity</td>
+  <tr style="text-align: center;" class="TLDR">
+   <td class="lp">Total production quantity</td>
    <td>35.034</td>
    <td></td>
    <td>2.115</td>
@@ -583,7 +585,7 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="TLDR">
       <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
    <td>35.034</td>
    <td></td>
@@ -599,7 +601,7 @@
    <td>80%</td>
    <td>15</td>
   </tr>
-  <tr style="text-align: center">
+  <tr style="text-align: center" class="IFRR">
   <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR (Edmilson)</td>
   <td>Rework quantity</td>
    <td>35.054</td>
@@ -613,7 +615,7 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="IFRR">
     <td>Total production quantity</td>
    <td>0</td>
    <td></td>
@@ -626,7 +628,7 @@
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" class="IFRR">
       <td>Intern Failure Rework Rate</td>
    <td>0</td>
    <td></td>
