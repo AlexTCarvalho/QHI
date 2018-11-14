@@ -30,16 +30,30 @@
               });
               //alert(ly);
 
+              var result = $(this).find('.impr');
               var tam = ly.length;
-              var result = $(this).find('.impr').each(function(){
-                  var i;
-                  
-                  for (i = 0; i < tam; i++) { 
+              if (result.length > 0){
+                for (var i = 0; i < tam; i++) { 
                     
                     var rslt = ((ly[i]-py[i])/ly[i])*100;
-                    $(this).text(rslt.toFixed(2));
+                    if (ly[i] == 0){
+                      if (py[i] == 0){
+                        rslt = 100;
+                      }else{
+                        rslt = -100;
+                      }
+                    }
+                    if (rslt > 0){
+                      result[i].innerHTML = rslt.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />"
+                    }else if (rslt < 0){
+                      result[i].innerHTML = rslt.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />"
+                    }else{
+                      result[i].innerHTML = rslt.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />"
+                    }
+                    
+                    
                   }
-              });
+              }
               //alert(rs);
               j++;
               /*alert(lastyear);
@@ -315,10 +329,12 @@
     <td class="impr"></td>
     <td class="impr"></td>
   </tr>
+  <!--
    </tbody>
 </table>
 <h1>H&A Weekly QHI Tabela 1 de baixo</h1>
  <table id = "table2" class="table table-striped table-bordered table-condensed table-hover">
+ -->
   <!--
  <thead>
   <tr style="text-align: center;">
@@ -340,49 +356,49 @@
  -->
   <tr style="text-align: center;">
       <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
-      <td style="text-align: center";>Primeira linha</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td></td>
+      <td colspan="2" style="text-align: center";>Primeira linha</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-</td>
+      <td>-</td>
   </tr>
   <tr style="text-align: center;">
-      <td style="text-align: center";>CEO Information Reporting </td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td></td>
+      <td colspan="2">CEO Information Reporting </td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-</td>
+      <td>-</td>
   </tr>
   <tr style="text-align: center;">
-      <td style="text-align: center";>Terceira linha</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td></td>
+      <td colspan="2">Terceira linha</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-</td>
+      <td>-</td>
   </tr>
  </tbody>
 </table>
@@ -413,229 +429,229 @@
    <td rowspan="6" style="vertical-align: middle">Market</td>
    <td rowspan="3" style="vertical-align: middle">FFR (Edmilson)</td>
    <td>SVC Number</td>
-   <td class="number">2.727</td>
+   <td class="lp">2.727</td>
    <td> </td>
-   <td class="number">2.191 </td>
-   <td class="number">2.229 </td>
-   <td class="number">2.280 </td>
-   <td class="number">2.352 </td>
+   <td>2.191 </td>
+   <td>2.229 </td>
+   <td>2.280 </td>
+   <td>2.352 </td>
    <td> </td>
-   <td class="number">2.352 </td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green">x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td>2.352 </td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green">x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Weighted cumulative spectral</td>
-   <td class="number">138,474  </td>
+   <td class="lp">138,474  </td>
    <td>     </td>
-   <td class="number">160,874  </td>
-   <td class="number">160,888  </td>
-   <td class="number">161,305  </td>
-   <td class="number">161,409  </td>
+   <td>160,874  </td>
+   <td>160,888  </td>
+   <td>161,305  </td>
+   <td>161,409  </td>
    <td></td>
-   <td class="number">161,409</td>
+   <td>161,409</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> 17% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Failure Field Rate </td> <!-- ((up/down)*100) -->
-   <td class="number">1.97</td>
-   <td class="number">1.90</td>
-   <td class="number">1.36</td>
-   <td class="number">1.39</td>
-   <td class="number">1.41</td>
-   <td class="number">1.46</td>
+   <td class="lp">1.97</td>
+   <td>1.90</td>
+   <td>1.36</td>
+   <td>1.39</td>
+   <td>1.41</td>
+   <td>1.46</td>
    <td></td>
-   <td class="number">1.46</td>
+   <td>1.46</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
    <td >35 </td>
    <td >100% </td>
-   <td class="number">35</td>
+   <td>35</td>
   </tr>
   <tr style="text-align: center;">
    <td rowspan="3" style="vertical-align: middle">FCR (Edmilson)</td>
    <td>Failure cost</td>
-   <td class="number">63,5</td>
-   <td class="number">60,4</td>
-   <td class="number">13,0</td>
-   <td class="number">14,6</td>
-   <td class="number">14,0</td>
-   <td class="number">10,3</td>
+   <td>63,5</td>
+   <td>60,4</td>
+   <td>13,0</td>
+   <td>14,6</td>
+   <td>14,0</td>
+   <td>10,3</td>
    <td></td>
-   <td class="number">51,9</td>
+   <td>51,9</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Sales</td>
-   <td class="number">14.528,7</td>
-   <td class="number">13.802,3</td>
-   <td class="number">235,2</td>
+   <td>14.528,7</td>
+   <td>13.802,3</td>
+   <td>235,2</td>
    <td>###</td>
-   <td class="number">408,0</td>
+   <td>408,0</td>
    <td>900,1</td>
    <td></td>
-   <td class="number">2.980,3</td>
+   <td>2.980,3</td>
    <td><img width="20px" src="circlered.svg" alt="Logo" /> </td>
    <td style="color: red"> 298% <img width="20px" src="upred.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Failure Cost Rate </td> <!-- ((up/down)*100) -->
-   <td class="number">0.44</td>
-   <td class="number">0.44</td>
-   <td class="number">5,53</td>
-   <td class="number">1.02</td>
-   <td class="number">3,43</td>
-   <td class="number">1.14</td>
+   <td>0.44</td>
+   <td>0.44</td>
+   <td>5,53</td>
+   <td>1.02</td>
+   <td>3,43</td>
+   <td>1.14</td>
    <td></td>
-   <td class="number">1.74</td>
+   <td>1.74</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
    <td style="vertical-align: bottom;">4 </td>
    <td style="vertical-align: bottom;">20% </td>
-   <td class="number">20</td>
+   <td>20</td>
   </tr>
   <tr style="text-align: center;">
    <td rowspan="9" style="vertical-align: middle">Production</td>
    <td rowspan="3" style="vertical-align: middle">PRR (Jessylane)</td>
    <td>Poor parts quantity</td>
-   <td class="number">54</td>
+   <td>54</td>
    <td></td>
-   <td class="number">0</td>
-   <td class="number">6</td>
-   <td class="number">15</td>
-   <td class="number">10</td>
+   <td>0</td>
+   <td>6</td>
+   <td>15</td>
+   <td>10</td>
    <td></td>
-   <td class="number">31</td>
+   <td>31</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Production quantity</td>
-   <td class="number">70.511</td>
+   <td>70.511</td>
    <td></td>
-   <td class="number">4.191</td>
-   <td class="number">5.002</td>
-   <td class="number">21.083</td>
+   <td>4.191</td>
+   <td>5.002</td>
+   <td>21.083</td>
    <td>9.898</td>
    <td></td>
-   <td class="number">40.174</td>
+   <td>40.174</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
       <td>Parts Return Rate</td>
-   <td class="number">766</td>
-   <td class="number">454</td>
-   <td class="number">0</td>
-   <td class="number">1.200</td>
-   <td class="number">711</td>
-   <td class="number">1.010</td>
+   <td>766</td>
+   <td>454</td>
+   <td>0</td>
+   <td>1.200</td>
+   <td>711</td>
+   <td>1.010</td>
    <td></td>
-   <td class="number">772</td>
+   <td>772</td>
    <td><img width="20px" src="circlered.svg" alt="Logo" /> </td>
    <td style="color: red"> x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
-   <td class="number">3</td>
-   <td class="number">20%</td>
-   <td class="number">15</td>
+   <td>3</td>
+   <td>20%</td>
+   <td>15</td>
   </tr>
   <tr style="text-align: center;">
   <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR (Mateus + Vanessa)</td>
    <td>Poor parts quantity</td>
-   <td class="number">131</td>
+   <td>131</td>
    <td></td>
-   <td class="number">11</td>
-   <td class="number">7</td>
-   <td class="number">25</td>
-   <td class="number">19</td>
+   <td>11</td>
+   <td>7</td>
+   <td>25</td>
+   <td>19</td>
    <td></td>
-   <td class="number">62</td>
+   <td>62</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Total production quantity</td>
-   <td class="number">35.034</td>
+   <td>35.034</td>
    <td></td>
-   <td class="number">2.115</td>
-   <td class="number">4.738</td>
+   <td>2.115</td>
+   <td>4.738</td>
    <td>9854</td>
-   <td class="number">7922</td>
+   <td>7922</td>
    <td></td>
-   <td class="number">24.629</td>
+   <td>24.629</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
       <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
-   <td class="number">35.034</td>
+   <td>35.034</td>
    <td></td>
-   <td class="number">2.115</td>
-   <td class="number">4.738</td>
+   <td>2.115</td>
+   <td>4.738</td>
    <td>9854</td>
-   <td class="number">7922</td>
+   <td>7922</td>
    <td></td>
-   <td class="number">24.629</td>
+   <td>24.629</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td class="number">12</td>
-   <td class="number">80%</td>
-   <td class="number">15</td>
+   <td>12</td>
+   <td>80%</td>
+   <td>15</td>
   </tr>
   <tr style="text-align: center">
   <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR (Edmilson)</td>
   <td>Rework quantity</td>
-   <td class="number">35.054</td>
+   <td>35.054</td>
    <td></td>
-   <td class="number">2.000</td>
-   <td class="number">2.837</td>
-   <td class="number">15</td>
-   <td class="number">10</td>
+   <td>2.000</td>
+   <td>2.837</td>
+   <td>15</td>
+   <td>10</td>
    <td></td>
-   <td class="number">31</td>
+   <td>31</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
     <td>Total production quantity</td>
-   <td class="number">0</td>
+   <td>0</td>
    <td></td>
-   <td class="number">0</td>
-   <td class="number">0</td>
-   <td class="number">15</td>
-   <td class="number">10</td>
+   <td>0</td>
+   <td>0</td>
+   <td>15</td>
+   <td>10</td>
    <td></td>
-   <td class="number">31</td>
+   <td>31</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
       <td>Intern Failure Rework Rate</td>
-   <td class="number">0</td>
+   <td>0</td>
    <td></td>
-   <td class="number">0</td>
-   <td class="number">0</td>
-   <td class="number">15</td>
-   <td class="number">10</td>
+   <td>0</td>
+   <td>0</td>
+   <td>15</td>
+   <td>10</td>
    <td></td>
-   <td class="number">31</td>
+   <td>31</td>
    <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td class="number">15</td>
-   <td class="number">100%</td>
-   <td class="number">15</td>
+   <td>15</td>
+   <td>100%</td>
+   <td>15</td>
   </tr>
   <tr style="text-align: center;">
       <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
       <td colspan="2" style="text-align: center";>Primeira linha</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td></td>
       <td>-</td>
       <td>-</td>
@@ -645,13 +661,13 @@
   </tr>
   <tr style="text-align: center;">
       <td colspan="2" style="text-align: center";>CEO Information Reporting</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td></td>
       <td>-</td>
       <td>-</td>
@@ -679,11 +695,11 @@
     <b>
       <td colspan="3">Total</td>
     <td colspan="7"></td>
-    <td class="number">2229</td>
+    <td>2229</td>
     <td colspan="2"></td>
-    <td class="number">81</td>
-    <td class="number">81%</td>
-    <td class="number">100</td>
+    <td>81</td>
+    <td>81%</td>
+    <td>100</td>
     </b>
     
   </tr>
