@@ -21,7 +21,6 @@
             mtable.find('tbody tr').each(function(){
               if (j % 3 == 0){ ly = [];}
               if (j % 3 == 1){ py = [];}
-              if (j % 3 == 2){ rs = [];}
               var lastyear = $(this).find('.ly').each(function(){
                 ly.push($(this).text());
               });
@@ -30,46 +29,125 @@
               });
               //alert(ly);
 
-              var result = $(this).find('.impr');
               var tam = ly.length;
-              if (result.length > 0){
-                for (var i = 0; i < tam; i++) { 
-                    
+              var linhaIMPR = $(this).find('.impr');
+              if( linhaIMPR.length != 0){
+                  for (var i=0;i<linhaIMPR.length;i++){
                     var rslt = ((ly[i]-py[i])/ly[i])*100;
                     if (ly[i] == 0){
                       if (py[i] == 0){
-                        rslt = 100;
+                        rslt = 0;
                       }else{
                         rslt = -100;
                       }
                     }
+
                     if (rslt > 0){
-                      result[i].innerHTML = rslt.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />"
+                      linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />";
                     }else if (rslt < 0){
-                      result[i].innerHTML = rslt.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />"
+                      linhaIMPR[i].innerHTML = rslt.toFixed(0)*(-1) + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />";
                     }else{
-                      result[i].innerHTML = rslt.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />"
+                      linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />";
                     }
-                    
-                    
                   }
               }
-              //alert(rs);
               j++;
-              /*alert(lastyear);
-              var presentyear = $(this).find('.py').text();
-              alert(lastyear);
-        // ((17' - 18')/17')*100
-              var result = ((lastyear-presentyear)/lastyear)*100;
-              if (result > 0){
-                $(this).find('.impr').text(result + "% <img width="20px" src="downgreen.svg" alt="Logo" />");
-              }
-              }elseif (result == 0){
-                $(this).find('.impr').text(result + "% <img width="20px" src="squareblack.svg" alt="Logo" />");
-              }else{
-                $(this).find('.impr').text(result + "% <img width="20px" src="upred.svg" alt="Logo" />");
-              }*/
             });
+          var wtable = $('#weekly-table');
+          var j = 0;
+          wtable.find('tbody tr').each(function(){
+            /* PARTE TEMPORÁRIA DO CÓDIGO
+            SE A ORDEM FOR FFR-FCR-PRR-TLDR-IFRR ENTÃO É DESSE JEITO
+            */
+
+            // COLUNA DOS FFR-FCR...
+            if (j % 3 == 0) { 
+              var fail = $(this).find('.lp');
+            }
+            if (j % 3 == 1) { var total = $(this).find('.lp');}
+            // COLUNA DOS RESULTADOS
+
+            var week = $(this).find('.week');
+            var ap = $(this).find('.ap');
+            for (var i = ap.length - 1; i >= 0; i--) {
+            
+              if (j < 3){
+                for (var k = 0;k < week.length; k++) {
+                  if (week[k].innerHTML != ''){
+                    ap[i].innerHTML = week[k].innerHTML;
+                  }
+                }
+              }else{
+                var soma = 0;
+                for (var k = week.length - 1; k >= 0;k--){
+                  if (week[k].innerHTML != ''){
+                    soma= soma + parseFloat(week[k].innerHTML);
+                  }
+                  
+                }
+                ap[i].innerHTML = soma.toFixed(1);
+              }
+            }
+
+            // Feitos os resultados, vamos pras setinhas
+            var lp = $(this).find('.lp');
+            var ap = $(this).find('.ap');
+            var result = (lp.text()-ap.text())/lp.text()*100;
+
+            if (lp.text() == 0){
+              if (ap.text() == 0){
+                result = 0;
+              }else{
+                result = -100;
+              }
+            }
+            var circle = $(this).find('.circle');
+            var impr = $(this).find('.impr');
+
+            if (j % 3 != 1){
+              for (var i = lp.length - 1; i >= 0; i--) {
+                if(result > 0){
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />"
+                  impr[i].style = "color: green";
+                }else if (result < 0 ){
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />";
+                  impr[i].style = "color: red";
+                }else{
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circleblack.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />"
+                  impr[i].style = "color: black";
+                }
+              }
+            }else{
+              for (var i = lp.length - 1; i >= 0; i--) {
+                if(result > 0){
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"20px\" src=\"downred.svg\" alt=\"Logo\" />"
+                  impr[i].style = "color: red";
+                }else if (result < 0 ){
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upgreen.svg\" alt=\"Logo\" />";
+                  impr[i].style = "color: green";
+                }else{
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circleblack.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />";
+                  impr[i].style = "color: black";
+                }
+              }
+            }
+            var pts = $(this).find('.pts');
+            var prctg = $(this).find('.prctg');
+            var patt = $(this).find('.patt');
+            var result2 = (pts.text()/patt.text())*100;
+            if (!isNaN(result2)){
+              prctg[0].innerHTML = result2 + "%";
+            }
+
+            
+            j++;
+          });
         });
        
   
@@ -145,7 +223,7 @@
    <td class="impr"></td>
   </tr>
   <tr style="text-align: center;">
-   <td rowspan="3" style="text-align: center; vertical-align: middle">FCR (Edmilson)</td>
+   <td rowspan="3" style="transformext-align: center; vertical-align: middle">FCR (Edmilson)</td>
    <td>'17</td>
    <td class="ly">1.01</td>
    <td class="ly">1.22</td>
@@ -172,8 +250,8 @@
    <td class="py">1.13</td>
    <td class="py">1.09</td>
    <td class="py">1.05</td>
-   <td class="py">12</td>
-   <td class="py">12</td>
+   <td class="py">1</td>
+   <td class="py">1</td>
   </tr>
   <tr style="text-align: center;">
    <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
@@ -329,81 +407,56 @@
     <td class="impr"></td>
     <td class="impr"></td>
   </tr>
-  <!--
-   </tbody>
-</table>
-<h1>H&A Weekly QHI Tabela 1 de baixo</h1>
- <table id = "table2" class="table table-striped table-bordered table-condensed table-hover">
- -->
-  <!--
- <thead>
-  <tr style="text-align: center;">
-   <th colspan="3" style="text-align: center; vertical-align: middle;">KPI</th>
-   <th>Jan</th>
-   <th>Feb</th>
-   <th>Mar</th>
-   <th>Apr</th>
-   <th>May</th>
-   <th>Jun</th>
-   <th>Jul</th>
-   <th>Aug</th>
-   <th>Sep</th>
-   <th>Oct</th>
-   <th>Nov</th>
-   <th>Dec</th>
-  </tr>
- </thead>
- -->
   <tr style="text-align: center;">
       <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
-      <td colspan="2" style="text-align: center";>Primeira linha</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
+      <td style="text-align: center";>Primeira linha</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td></td>
+      <td></td>
   </tr>
   <tr style="text-align: center;">
-      <td colspan="2">CEO Information Reporting </td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
+      <td style="text-align: center";>CEO Information Reporting </td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td></td>
+      <td></td>
   </tr>
   <tr style="text-align: center;">
-      <td colspan="2">Terceira linha</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
+      <td style="text-align: center";>Terceira linha</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td></td>
+      <td></td>
   </tr>
  </tbody>
 </table>
 
-
+<!-- TABELA SEMANAL -->
  <h1>H&A Weekly QHI Tabela 2</h1>
  <table id="weekly-table" class="table table-striped table-bordered table-condensed table-hover">
  <thead>
@@ -427,233 +480,233 @@
   </tr>
  </thead>
  <tbody>
-  <tr style="text-align: center;" class ="FFR">
+  <tr style="text-align: center;" class = "FFR">
    <td rowspan="6" style="vertical-align: middle">Market</td>
    <td rowspan="3" style="vertical-align: middle">FFR (Edmilson)</td>
    <td>SVC Number</td>
-   <td class="lp">2.727</td>
-   <td> </td>
-   <td>2.191 </td>
-   <td>2.229 </td>
-   <td>2.280 </td>
-   <td>2.352 </td>
-   <td> </td>
-   <td>2.352 </td>
+   <td class="lp">2727</td>
+   <td class="ao"> </td>
+   <td class="week">2191 </td>
+   <td class="week">2229 </td>
+   <td class="week">2280 </td>
+   <td class="week">2352 </td>
+   <td class="week"></td>
+   <td class="ap">0 </td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" style="color: green">x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
    <td>Weighted cumulative spectral</td>
-   <td class="lp">138,474  </td>
-   <td>     </td>
-   <td>160,874  </td>
-   <td>160,888  </td>
-   <td>161,305  </td>
-   <td>161,409  </td>
-   <td></td>
-   <td>161,409</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> 17% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
+   <td class="lp">138474  </td>
+   <td class="ao"></td>
+   <td class="week">160874  </td>
+   <td class="week">160888  </td>
+   <td class="week">161305  </td>
+   <td class="week">161409  </td>
+   <td class="week"></td>
+   <td  class="ap">0</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> 17% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
    <td>Failure Field Rate </td> <!-- ((up/down)*100) -->
    <td class="lp">1.97</td>
-   <td>1.90</td>
-   <td>1.36</td>
-   <td>1.39</td>
-   <td>1.41</td>
-   <td>1.46</td>
-   <td></td>
-   <td>1.46</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
-   <td >35 </td>
-   <td >100% </td>
-   <td>35</td>
+   <td class="ao">1.90</td>
+   <td class="week" >1.36</td>
+   <td class="week" >1.39</td>
+   <td class="week" >1.41</td>
+   <td class="week" >1.46</td>
+   <td class="week" ></td>
+   <td class="ap">0</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
+   <td class="pts" >35 </td>
+   <td class="prctg">0% </td>
+   <td class="patt">35</td>
   </tr>
   <tr style="text-align: center;" class="FCR">
    <td rowspan="3" style="vertical-align: middle">FCR (Edmilson)</td>
    <td>Failure cost</td>
-   <td class="lp">63,5</td>
-   <td>60,4</td>
-   <td>13,0</td>
-   <td>14,6</td>
-   <td>14,0</td>
-   <td>10,3</td>
-   <td></td>
-   <td>51,9</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="lp">63.5</td>
+   <td class="ao">60.4</td>
+   <td class="week">13.0</td>
+   <td class="week">14.6</td>
+   <td class="week">14.0</td>
+   <td class="week">10.3</td>
+   <td class="week"></td>
+   <td class="ap">51.9</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class="FCR">
+  <tr style="text-align: center;">
    <td>Sales</td>
-   <td class="lp">14.528,7</td>
-   <td>13.802,3</td>
-   <td>235,2</td>
-   <td>###</td>
-   <td>408,0</td>
-   <td>900,1</td>
-   <td></td>
-   <td>2.980,3</td>
-   <td><img width="20px" src="circlered.svg" alt="Logo" /> </td>
-   <td style="color: red"> 298% <img width="20px" src="upred.svg" alt="Logo" /> </td>
+   <td class="lp">14528.7</td>
+   <td class="ao">13802.3</td>
+   <td class="week">0</td><!-- 235.2 -->
+   <td class="week">0</td><!--    1437.0  -->
+   <td class="week">0</td><!-- 408.0-->
+   <td class="week">0</td><!-- 900.1-->
+   <td class="week"></td>
+   <td class="ap">2980.3</td>
+   <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: red"> 298% <img width="20px" src="upred.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class="FCR">
+  <tr style="text-align: center;">
    <td>Failure Cost Rate </td> <!-- ((up/down)*100) -->
    <td class="lp">0.44</td>
-   <td>0.44</td>
-   <td>5,53</td>
-   <td>1.02</td>
-   <td>3,43</td>
-   <td>1.14</td>
-   <td></td>
-   <td>1.74</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td style="vertical-align: bottom;">4 </td>
-   <td style="vertical-align: bottom;">20% </td>
-   <td>20</td>
+   <td class="ao">0.44</td>
+   <td class="week">5.53</td>
+   <td class="week">1.02</td>
+   <td class="week">3.43</td>
+   <td class="week">1.14</td>
+   <td class="week"></td>
+   <td class="ap">1.74</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="pts" ">4 </td>
+   <td class="prctg">0% </td>
+   <td class="patt">20</td>
   </tr>
-  <tr style="text-align: center;" class ="PRR">
+  <tr style="text-align: center;">
    <td rowspan="9" style="vertical-align: middle">Production</td>
    <td rowspan="3" style="vertical-align: middle">PRR (Jessylane)</td>
    <td>Poor parts quantity</td>
    <td class="lp">54</td>
-   <td></td>
-   <td>0</td>
-   <td>6</td>
-   <td>15</td>
-   <td>10</td>
-   <td></td>
-   <td>31</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="ao"></td>
+   <td class="week">0</td>
+   <td class="week">6</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class ="PRR">
+  <tr style="text-align: center;">
    <td>Production quantity</td>
-   <td class="lp">70.511</td>
-   <td></td>
-   <td>4.191</td>
-   <td>5.002</td>
-   <td>21.083</td>
-   <td>9.898</td>
-   <td></td>
-   <td>40.174</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="lp">70511</td>
+   <td class="ao"></td>
+   <td class="week">4191</td>
+   <td class="week">5002</td>
+   <td class="week">21083</td>
+   <td class="week">9898</td>
+   <td class="week"></td>
+   <td class="ap">40174</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class ="PRR">
+  <tr style="text-align: center;">
       <td>Parts Return Rate</td>
    <td class="lp">766</td>
-   <td>454</td>
-   <td>0</td>
-   <td>1.200</td>
-   <td>711</td>
-   <td>1.010</td>
-   <td></td>
-   <td>772</td>
-   <td><img width="20px" src="circlered.svg" alt="Logo" /> </td>
-   <td style="color: red"> x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
-   <td>3</td>
-   <td>20%</td>
-   <td>15</td>
+   <td class="ao">454</td>
+   <td class="week">0</td>
+   <td class="week">1200</td>
+   <td class="week">711</td>
+   <td class="week">1010</td>
+   <td class="week"></td>
+   <td class="ap">772</td>
+   <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: red"> x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
+   <td class="pts">3</td>
+   <td class="prctg">0%</td>
+   <td class="patt">15</td>
   </tr>
-  <tr style="text-align: center;" class="TLDR">
+  <tr style="text-align: center;">
   <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR (Mateus + Vanessa)</td>
    <td>Poor parts quantity</td>
    <td class="lp">131</td>
-   <td></td>
-   <td>11</td>
-   <td>7</td>
-   <td>25</td>
-   <td>19</td>
-   <td></td>
-   <td>62</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="ao"></td>
+   <td class="week">11</td>
+   <td class="week">7</td>
+   <td class="week">25</td>
+   <td class="week">19</td>
+   <td class="week"></td>
+   <td class="ap">62</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class="TLDR">
-   <td class="lp">Total production quantity</td>
-   <td>35.034</td>
-   <td></td>
-   <td>2.115</td>
-   <td>4.738</td>
-   <td>9854</td>
-   <td>7922</td>
-   <td></td>
-   <td>24.629</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+  <tr style="text-align: center;">
+   <td>Total production quantity</td>
+   <td class="lp">35034</td>
+   <td class="ao"></td>
+   <td class="week">2115</td>
+   <td class="week">4738</td>
+   <td class="week">9854</td>
+   <td class="week">7922</td>
+   <td class="week"></td>
+   <td class="ap">24629</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class="TLDR">
+  <tr style="text-align: center;">
       <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
-   <td>35.034</td>
-   <td></td>
-   <td>2.115</td>
-   <td>4.738</td>
-   <td>9854</td>
-   <td>7922</td>
-   <td></td>
-   <td>24.629</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td>12</td>
-   <td>80%</td>
-   <td>15</td>
+   <td class="lp">35034</td>
+   <td class="ao"></td>
+   <td class="week">2115</td>
+   <td class="week">4738</td>
+   <td class="week">9854</td>
+   <td class="week">7922</td>
+   <td class="week"></td>
+   <td class="ap">24629</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="pts">12</td>
+   <td class="prctg">0%</td>
+   <td class="patt">15</td>
   </tr>
-  <tr style="text-align: center" class="IFRR">
+  <tr style="text-align: center">
   <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR (Edmilson)</td>
   <td>Rework quantity</td>
-   <td>35.054</td>
-   <td></td>
-   <td>2.000</td>
-   <td>2.837</td>
-   <td>15</td>
-   <td>10</td>
-   <td></td>
-   <td>31</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="lp">35054</td>
+   <td class="ao"></td>
+   <td class="week">2000</td>
+   <td class="week">2837</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class="IFRR">
+  <tr style="text-align: center;">
     <td>Total production quantity</td>
-   <td>0</td>
-   <td></td>
-   <td>0</td>
-   <td>0</td>
-   <td>15</td>
-   <td>10</td>
-   <td></td>
-   <td>31</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="lp">0</td>
+   <td class="ao"></td>
+   <td class="week">0</td>
+   <td class="week">0</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
-  <tr style="text-align: center;" class="IFRR">
+  <tr style="text-align: center;">
       <td>Intern Failure Rework Rate</td>
-   <td>0</td>
-   <td></td>
-   <td>0</td>
-   <td>0</td>
-   <td>15</td>
-   <td>10</td>
-   <td></td>
-   <td>31</td>
-   <td><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td>15</td>
-   <td>100%</td>
-   <td>15</td>
+   <td class="lp">0</td>
+   <td class="ao"></td>
+   <td class="week">0</td>
+   <td class="week">0</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="pts">15</td>
+   <td class="prctg">100%</td>
+   <td class="patt">15</td>
   </tr>
   <tr style="text-align: center;">
       <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
       <td colspan="2" style="text-align: center";>Primeira linha</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
       <td></td>
       <td>-</td>
       <td>-</td>
@@ -663,13 +716,13 @@
   </tr>
   <tr style="text-align: center;">
       <td colspan="2" style="text-align: center";>CEO Information Reporting</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
+      <td class="number">0</td>
       <td></td>
       <td>-</td>
       <td>-</td>
@@ -697,11 +750,11 @@
     <b>
       <td colspan="3">Total</td>
     <td colspan="7"></td>
-    <td>2229</td>
+    <td class="number">2229</td>
     <td colspan="2"></td>
-    <td>81</td>
-    <td>81%</td>
-    <td>100</td>
+    <td class="number">81</td>
+    <td class="number">81%</td>
+    <td class="number">100</td>
     </b>
     
   </tr>
