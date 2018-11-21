@@ -60,17 +60,69 @@
             SE A ORDEM FOR FFR-FCR-PRR-TLDR-IFRR ENTÃO É DESSE JEITO
             */
 
+            if (j % 3 == 0){ ly = [];}
+            if (j % 3 == 1){ py = [];}
+            var td = $(this).find('td').each(function(){
+              if (j % 3 == 0){
+              
+                if (!isNaN($(this).text())){
+                  ly.push($(this).text());
+                }
+              }
+              if (j % 3 == 1){
+                if (!isNaN($(this).text())){
+                  py.push($(this).text());
+                }
+              }
+            });
+            var td2 = $(this).find('td');
+              if (j % 3 == 2){
+                var i = 0, k = 0;
+                /*
+                console.log("Vetor ly:");
+                  for (var i = 0; i < ly.length; i++) {
+                    console.log(ly[i]);
+                  }
+                  console.log("Fim do vetor");
+
+                console.log("Vetor py:");
+                  for (var i = 0; i < py.length; i++) {
+                    console.log(py[i]);
+                  }
+                  console.log("Fim do vetor");
+                  */
+                while (i < td2.length){
+                  //if (td2[i].className != '' && td2[i].className != 'patt' && td2[i].className != 'pts' && td2[i].className != 'prctg'){
+                  if($.isNumeric(td2[i].innerHTML) && td2[i].className != 'patt' && td2[i].className != 'pts' && td2[i].className != 'prctg'){
+                    if (ly[k].length > 0 && py[k].length > 0){ 
+                      if (j < 6){var result = (ly[k]/py[k])*100;}
+                      else{var result = (ly[k]/py[k])*1000000;}
+                      console.log(result);
+                      td2[i].innerHTML = result.toFixed(2);
+                      k++;
+                    }
+                  }
+                  i++;
+                }
+              }
+            
             // COLUNA DOS FFR-FCR...
-            if (j % 3 == 0) { 
-              var fail = $(this).find('.lp');
-            }
-            if (j % 3 == 1) { var total = $(this).find('.lp');}
+
             // COLUNA DOS RESULTADOS
 
             var week = $(this).find('.week');
             var ap = $(this).find('.ap');
+            var vetaps = [0, 0];
             for (var i = ap.length - 1; i >= 0; i--) {
-            
+              /*
+              if (j % 3 != 2){
+                console.log("Entrou aqui");
+                vetaps[j % 3] = ap[i].innerHTML;
+              }else{
+                var result = (vetaps[0]/vetaps[1])*100;
+                ap[i].innerHTML = result.toFixed(2);
+              }
+              */
               if (j < 3){
                 for (var k = 0;k < week.length; k++) {
                   if (week[k].innerHTML != ''){
@@ -81,11 +133,26 @@
                 var soma = 0;
                 for (var k = week.length - 1; k >= 0;k--){
                   if (week[k].innerHTML != ''){
+
                     soma= soma + parseFloat(week[k].innerHTML);
                   }
                   
                 }
                 ap[i].innerHTML = soma.toFixed(1);
+
+                console.log(soma.toFixed(1));
+                console.log("Linha: " +j);
+                if (j % 3 == 0){
+
+                  ap1 = soma.toFixed(1);
+                }else if (j % 3 == 1){ 
+                  ap2 = soma.toFixed(1);
+                }else{
+                  console.log("AP1: "+ap1);
+                  console.log("AP2: "+ap2);
+                  if (j < 6){ ap[i].innerHTML = (ap1/ap2*100).toFixed(2);}
+                  else{ ap[i].innerHTML = (ap1/ap2*1000000).toFixed(2);}
+                }
               }
             }
 
@@ -470,11 +537,11 @@
    <th style="vertical-align: middle;" rowspan="2" >Pattern (Padrão)</th>
   </tr>
   <tr style="text-align: center; vertical-align: middle;">
-   <td>W40  </td>
-   <td>W41  </td>
-   <td>W42  </td>
-   <td>W43  </td>
-   <td>W44  </td>
+   <td>W40</td>
+   <td>W41</td>
+   <td>W42</td>
+   <td>W43</td>
+   <td>W44</td>
    <td>Accumulate </td>
    <td colspan="2">Improvement rate</td> <!--  ((17' - 18')/17')*100-->
   </tr>
@@ -485,7 +552,7 @@
    <td rowspan="3" style="vertical-align: middle">FFR (Edmilson)</td>
    <td>SVC Number</td>
    <td class="lp">2727</td>
-   <td class="ao"> </td>
+   <td class="ao"></td>
    <td class="week">2191 </td>
    <td class="week">2229 </td>
    <td class="week">2280 </td>
@@ -542,10 +609,10 @@
    <td>Sales</td>
    <td class="lp">14528.7</td>
    <td class="ao">13802.3</td>
-   <td class="week">0</td><!-- 235.2 -->
-   <td class="week">0</td><!--    1437.0  -->
-   <td class="week">0</td><!-- 408.0-->
-   <td class="week">0</td><!-- 900.1-->
+   <td class="week">235.2</td><!-- 235.2 -->
+   <td class="week">1437.0</td><!--    1437.0  -->
+   <td class="week">408.0</td><!-- 408.0-->
+   <td class="week">900.1</td><!-- 900.1-->
    <td class="week"></td>
    <td class="ap">2980.3</td>
    <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
@@ -640,12 +707,12 @@
   </tr>
   <tr style="text-align: center;">
       <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
-   <td class="lp">35034</td>
-   <td class="ao"></td>
-   <td class="week">2115</td>
-   <td class="week">4738</td>
-   <td class="week">9854</td>
-   <td class="week">7922</td>
+   <td class="lp">3729</td>
+   <td class="ao">4200</td>
+   <td class="week">5201</td>
+   <td class="week">1477</td>
+   <td class="week">2537</td>
+   <td class="week">2398</td>
    <td class="week"></td>
    <td class="ap">24629</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
@@ -670,12 +737,12 @@
   </tr>
   <tr style="text-align: center;">
     <td>Total production quantity</td>
-   <td class="lp">0</td>
+   <td class="lp">5000000</td>
    <td class="ao"></td>
-   <td class="week">0</td>
-   <td class="week">0</td>
-   <td class="week">15</td>
-   <td class="week">10</td>
+   <td class="week">1000452</td>
+   <td class="week">2621485</td>
+   <td class="week">1717852</td>
+   <td class="week">3555544</td>
    <td class="week"></td>
    <td class="ap">31</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
