@@ -1,7 +1,4 @@
 <?php
-
-
-
 ?>
 <! DOCTYPE HTML>
 <html>
@@ -28,7 +25,6 @@
                 py.push($(this).text());
               });
               //alert(ly);
-
               var tam = ly.length;
               var linhaIMPR = $(this).find('.impr');
               if( linhaIMPR.length != 0){
@@ -41,7 +37,6 @@
                         rslt = -100;
                       }
                     }
-
                     if (rslt > 0){
                       linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />";
                     }else if (rslt < 0){
@@ -55,11 +50,11 @@
             });
           var wtable = $('#weekly-table');
           var j = 0;
+          var ptsv = [], pattv = [];
           wtable.find('tbody tr').each(function(){
             /* PARTE TEMPORÁRIA DO CÓDIGO
             SE A ORDEM FOR FFR-FCR-PRR-TLDR-IFRR ENTÃO É DESSE JEITO
             */
-
             if (j % 3 == 0){ ly = [];}
             if (j % 3 == 1){ py = [];}
             var td = $(this).find('td').each(function(){
@@ -84,7 +79,6 @@
                     console.log(ly[i]);
                   }
                   console.log("Fim do vetor");
-
                 console.log("Vetor py:");
                   for (var i = 0; i < py.length; i++) {
                     console.log(py[i]);
@@ -107,9 +101,7 @@
               }
             
             // COLUNA DOS FFR-FCR...
-
             // COLUNA DOS RESULTADOS
-
             var week = $(this).find('.week');
             var ap = $(this).find('.ap');
             var vetaps = [0, 0];
@@ -133,17 +125,14 @@
                 var soma = 0;
                 for (var k = week.length - 1; k >= 0;k--){
                   if (week[k].innerHTML != ''){
-
                     soma= soma + parseFloat(week[k].innerHTML);
                   }
                   
                 }
                 ap[i].innerHTML = soma.toFixed(1);
-
                 console.log(soma.toFixed(1));
                 console.log("Linha: " +j);
                 if (j % 3 == 0){
-
                   ap1 = soma.toFixed(1);
                 }else if (j % 3 == 1){ 
                   ap2 = soma.toFixed(1);
@@ -155,12 +144,10 @@
                 }
               }
             }
-
             // Feitos os resultados, vamos pras setinhas
             var lp = $(this).find('.lp');
             var ap = $(this).find('.ap');
             var result = (lp.text()-ap.text())/lp.text()*100;
-
             if (lp.text() == 0){
               if (ap.text() == 0){
                 result = 0;
@@ -170,7 +157,6 @@
             }
             var circle = $(this).find('.circle');
             var impr = $(this).find('.impr');
-
             if (j % 3 != 1){
               for (var i = lp.length - 1; i >= 0; i--) {
                 if(result > 0){
@@ -207,11 +193,40 @@
             var pts = $(this).find('.pts');
             var prctg = $(this).find('.prctg');
             var patt = $(this).find('.patt');
+            if (j < 15){
+              if (pts.length > 0){
+                ptsv.push(pts.text());
+                pattv.push(patt.text());
+              }
+            }else{
+              var somapts = 0, somapatt = 0;
+              console.log("ptsv length"+ ptsv.length);
+              console.log("pattv length"+ pattv.length);
+              for (var i = 0; i < ptsv.length;i++) {
+                console.log("ptsv["+i+"]"+ptsv[i]);
+                console.log("pattv["+i+"]"+pattv[i]);
+                somapts = somapts + parseFloat(ptsv[i]);
+                somapatt = somapatt + parseFloat(pattv[i]);
+                console.log("somapts "+somapts);
+                console.log("somapatt "+somapatt);
+              }
+              console.log(somapts);
+              console.log(somapatt);
+              for (var i = pts.length - 1; i >= 0; i--) {
+                pts[i].innerHTML = somapts;
+                patt[i].innerHTML = somapatt;
+              }
+              var result2 = (somapts/somapatt)*100;
+              if (!isNaN(result2)){
+                for (var i = prctg.length - 1; i >= 0; i--) {
+                  prctg[i].innerHTML = result2 + "%";
+                }
+              }
+            }
             var result2 = (pts.text()/patt.text())*100;
             if (!isNaN(result2)){
               prctg[0].innerHTML = result2 + "%";
             }
-
             
             j++;
           });
@@ -290,7 +305,7 @@
    <td class="impr"></td>
   </tr>
   <tr style="text-align: center;">
-   <td rowspan="3" style="transformext-align: center; vertical-align: middle">FCR (Edmilson)</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle">FCR (Edmilson)</td>
    <td>'17</td>
    <td class="ly">1.01</td>
    <td class="ly">1.22</td>
@@ -742,7 +757,7 @@
    <td class="week">1000452</td>
    <td class="week">2621485</td>
    <td class="week">1717852</td>
-   <td class="week">3555544</td>
+   <td class="week">1155000</td>
    <td class="week"></td>
    <td class="ap">31</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
@@ -815,13 +830,13 @@
   </tr>
   <tr style="text-align: center;">
     <b>
-      <td colspan="3">Total</td>
+    <td class="total"colspan="3">Total</td>
     <td colspan="7"></td>
-    <td class="number">2229</td>
+    <td class="ao">2229</td>
     <td colspan="2"></td>
-    <td class="number">81</td>
-    <td class="number">81%</td>
-    <td class="number">100</td>
+    <td class="pts">0</td>
+    <td class="prctg">0%</td>
+    <td class="patt">0</td>
     </b>
     
   </tr>
@@ -831,6 +846,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
 </body>
 </html>
