@@ -30,19 +30,26 @@
               if( linhaIMPR.length != 0){
                   for (var i=0;i<linhaIMPR.length;i++){
                     var rslt = ((ly[i]-py[i])/ly[i])*100;
-                    if (ly[i] == 0){
-                      if (py[i] == 0){
-                        rslt = 0;
-                      }else{
-                        rslt = -100;
-                      }
+                    if (py[i].length > 0){
+                      if (ly[i] == 0){
+                        if (py[i] == 0){
+                          rslt = 0;
+                        }else{
+                          rslt = -100;
+                        }
+                      }  
+                    }else{
+                      rslt = NaN;
                     }
+                    
                     if (rslt > 0){
                       linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />";
                     }else if (rslt < 0){
                       linhaIMPR[i].innerHTML = rslt.toFixed(0)*(-1) + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />";
-                    }else{
+                    }else if (rslt == 0){
                       linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />";
+                    }else{
+                      linhaIMPR[i].innerHTML = '';
                     }
                   }
               }
@@ -91,7 +98,6 @@
                     if (ly[k].length > 0 && py[k].length > 0){ 
                       if (j < 6){var result = (ly[k]/py[k])*100;}
                       else{var result = (ly[k]/py[k])*1000000;}
-                      console.log(result);
                       td2[i].innerHTML = result.toFixed(2);
                       k++;
                     }
@@ -130,15 +136,11 @@
                   
                 }
                 ap[i].innerHTML = soma.toFixed(1);
-                console.log(soma.toFixed(1));
-                console.log("Linha: " +j);
                 if (j % 3 == 0){
                   ap1 = soma.toFixed(1);
                 }else if (j % 3 == 1){ 
                   ap2 = soma.toFixed(1);
                 }else{
-                  console.log("AP1: "+ap1);
-                  console.log("AP2: "+ap2);
                   if (j < 6){ ap[i].innerHTML = (ap1/ap2*100).toFixed(2);}
                   else{ ap[i].innerHTML = (ap1/ap2*1000000).toFixed(2);}
                 }
@@ -200,18 +202,11 @@
               }
             }else{
               var somapts = 0, somapatt = 0;
-              console.log("ptsv length"+ ptsv.length);
-              console.log("pattv length"+ pattv.length);
               for (var i = 0; i < ptsv.length;i++) {
-                console.log("ptsv["+i+"]"+ptsv[i]);
-                console.log("pattv["+i+"]"+pattv[i]);
                 somapts = somapts + parseFloat(ptsv[i]);
                 somapatt = somapatt + parseFloat(pattv[i]);
-                console.log("somapts "+somapts);
-                console.log("somapatt "+somapatt);
               }
-              console.log(somapts);
-              console.log(somapatt);
+
               for (var i = pts.length - 1; i >= 0; i--) {
                 pts[i].innerHTML = somapts;
                 patt[i].innerHTML = somapatt;
@@ -286,8 +281,8 @@
    <td class="py">1.44</td>
    <td class="py">1.44</td>
    <td class="py">1.39</td>
-   <td class="py">1.0</td>
-   <td class="py">2.4</td>
+   <td class="py"></td>
+   <td class="py"></td>
   </tr>
   <tr style="text-align: center;">
    <td>Improvement</td> <!-- ((17' - 18')/17')*100 -->
@@ -471,8 +466,8 @@
    <td class="py">0.22</td>
    <td class="py">0.14</td>
    <td class="py">0.85</td>
-   <td class="py">2</td>
-   <td class="py">2</td>
+   <td class="py"></td>
+   <td class="py"></td>
   </tr>
   <tr style="text-align: center;">
     <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
