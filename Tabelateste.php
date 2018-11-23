@@ -4,7 +4,11 @@
 <html>
 <head>
      <meta charset="UTF-8"/>
-     <title>H&A Weekly QHI (RAC)</title>
+     <title>Teste Weekly QHI (RAC)</title>
+     
+      <style>
+          <div id="descricaoFFR" style="position:relative; height:100px; width:100px; background:#FF0000; top:15px;left:40px; display:none; " >FFR é Failure Field Rate!</div>
+      </style>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script type = "text/javascript">
@@ -14,8 +18,14 @@
           var ly = [];
           var py = [];
           var rs = [];
+
           var mtable = $('#monthly-table');
             mtable.find('tbody tr').each(function(){
+              var rate = $(this).find('.rate');
+
+              rate.onmouseover = "getElementById('descricaoFFR').style.display='block'";
+              rate.onmouseout = "getElementById('descricaoFFR').style.display='none'";
+              
               if (j % 3 == 0){ ly = [];}
               if (j % 3 == 1){ py = [];}
               var lastyear = $(this).find('.ly').each(function(){
@@ -42,12 +52,18 @@
                       rslt = NaN;
                     }
                     
-                    if (rslt > 0){
-                      linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />";
-                    }else if (rslt < 0){
-                      linhaIMPR[i].innerHTML = rslt.toFixed(0)*(-1) + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />";
-                    }else if (rslt == 0){
-                      linhaIMPR[i].innerHTML = rslt.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />";
+                    if (rslt >= 0){
+                      linhaIMPR[i].innerHTML = "<b>" + rslt.toFixed(0) + "% <img width=\"20px\" src=\"downblack.svg\" alt=\"Logo\" /> </b>";
+                      linhaIMPR[i].bgColor = "green";
+                      linhaIMPR[i].style = "color: black";
+                    }else if (rslt >= -10){
+                      linhaIMPR[i].innerHTML = "<b>" + rslt.toFixed(0)*(-1) + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\" /> </b>";
+                      linhaIMPR[i].bgColor = "yellow";
+                      linhaIMPR[i].style = "color: black";
+                    }else if (rslt < -10){
+                      linhaIMPR[i].innerHTML = "<b>" + rslt.toFixed(0)*(-1) + "% <img width=\"20px\" src=\"upwhite.svg\" alt=\"Logo\" /> </b>";
+                      linhaIMPR[i].bgColor = "red";
+                      linhaIMPR[i].style = "color: white";
                     }else{
                       linhaIMPR[i].innerHTML = '';
                     }
@@ -118,13 +134,13 @@
                 vetaps[j % 3] = ap[i].innerHTML;
               }else{
                 var result = (vetaps[0]/vetaps[1])*100;
-                ap[i].innerHTML = result.toFixed(2);
+                ap[i].innerHTML = "<b>" + result.toFixed(2);
               }
               */
               if (j < 3){
                 for (var k = 0;k < week.length; k++) {
                   if (week[k].innerHTML != ''){
-                    ap[i].innerHTML = week[k].innerHTML;
+                    ap[i].innerHTML = "<b>" + week[k].innerHTML;
                   }
                 }
               }else{
@@ -135,20 +151,21 @@
                   }
                   
                 }
-                ap[i].innerHTML = soma.toFixed(1);
+                ap[i].innerHTML = "<b>" + soma.toFixed(1);
                 if (j % 3 == 0){
                   ap1 = soma.toFixed(1);
                 }else if (j % 3 == 1){ 
                   ap2 = soma.toFixed(1);
                 }else{
-                  if (j < 6){ ap[i].innerHTML = (ap1/ap2*100).toFixed(2);}
-                  else{ ap[i].innerHTML = (ap1/ap2*1000000).toFixed(2);}
+                  if (j < 6){ ap[i].innerHTML = "<b>" + (ap1/ap2*100).toFixed(2);}
+                  else{ ap[i].innerHTML = "<b>" + (ap1/ap2*1000000).toFixed(2);}
                 }
               }
             }
             // Feitos os resultados, vamos pras setinhas
             var lp = $(this).find('.lp');
             var ap = $(this).find('.ap');
+            console.log(lp);
             var result = (lp.text()-ap.text())/lp.text()*100;
             if (lp.text() == 0){
               if (ap.text() == 0){
@@ -161,40 +178,50 @@
             var impr = $(this).find('.impr');
             if (j % 3 != 1){
               for (var i = lp.length - 1; i >= 0; i--) {
-                if(result > 0){
+                if(result >= 0){
                   circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
-                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"20px\" src=\"downgreen.svg\" alt=\"Logo\" />"
-                  impr[i].style = "color: green";
-                }else if (result < 0 ){
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
-                  impr[i].innerHTML = result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upred.svg\" alt=\"Logo\" />";
-                  impr[i].style = "color: red";
-                }else{
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circleblack.svg\" alt=\"Logo\" />";
-                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />"
+                  impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"downwhite.svg\" alt=\"Logo\"/> </b>"
+                  impr[i].bgColor = "green";
+                  impr[i].style = "color: white";
+                }else if (result >= -10){
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\"/> </b>"
+                  impr[i].bgColor = "yellow";
                   impr[i].style = "color: black";
+                }else{
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upwhite.svg\" alt=\"Logo\" /> </b>";
+                  impr[i].bgColor = "red";
+                  impr[i].style = "color: white";
                 }
               }
             }else{
               for (var i = lp.length - 1; i >= 0; i--) {
-                if(result > 0){
+                if(result >= 10){
                   circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
-                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"20px\" src=\"downred.svg\" alt=\"Logo\" />"
-                  impr[i].style = "color: red";
-                }else if (result < 0 ){
+                  impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"downwhite.svg\" alt=\"Logo\" /> </b>"
+                  impr[i].bgColor = "red";
+                  impr[i].style = "color: white"; 
+                }else if (result >= 0){
                   circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
-                  impr[i].innerHTML = result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upgreen.svg\" alt=\"Logo\" />";
-                  impr[i].style = "color: green";
-                }else{
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circleblack.svg\" alt=\"Logo\" />";
-                  impr[i].innerHTML = result.toFixed(0) + "% <img width=\"10px\" src=\"squareblack.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\" /> </b>";
+                  impr[i].bgColor = "yellow";
                   impr[i].style = "color: black";
+                }else{
+                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
+                  impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upwhite.svg\" alt=\"Logo\" /> </b>";
+                  impr[i].bgColor = "green";
+                  impr[i].style = "color: white";
                 }
               }
             }
             var pts = $(this).find('.pts');
             var prctg = $(this).find('.prctg');
             var patt = $(this).find('.patt');
+            var result2 = (pts.text()/patt.text())*100;
+            if (!isNaN(result2)){
+              prctg[0].innerHTML = result2 + "%";
+            }
             if (j < 15){
               if (pts.length > 0){
                 ptsv.push(pts.text());
@@ -208,19 +235,15 @@
               }
 
               for (var i = pts.length - 1; i >= 0; i--) {
-                pts[i].innerHTML = somapts;
-                patt[i].innerHTML = somapatt;
+                pts[i].innerHTML = "<b>" + somapts;
+                patt[i].innerHTML = "<b>" + somapatt;
               }
               var result2 = (somapts/somapatt)*100;
               if (!isNaN(result2)){
                 for (var i = prctg.length - 1; i >= 0; i--) {
-                  prctg[i].innerHTML = result2 + "%";
+                  prctg[i].innerHTML = "<b>" + result2 + "%";
                 }
               }
-            }
-            var result2 = (pts.text()/patt.text())*100;
-            if (!isNaN(result2)){
-              prctg[0].innerHTML = result2 + "%";
             }
             
             j++;
@@ -231,10 +254,10 @@
      </script>
  </head>
 <body>
-
  <h1>H&A Weekly QHI Tabela 1</h1>
  <table id = "monthly-table" class="table table-striped table-bordered table-condensed table-hover">
  <thead>
+
   <tr style="text-align: center;">
    <th colspan="3" style="text-align: center; vertical-align: middle;">KPI</th>
    <th>Jan</th>
@@ -254,35 +277,35 @@
  <tbody>
   <tr style="text-align: center;">
    <td rowspan="6" style="text-align: center; vertical-align: middle">Market</td>
-   <td rowspan="3" style="text-align: center; vertical-align: middle">FFR (Edmilson)</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">FFR</td>
    <td>'17</td>
-   <td class="ly">2.62</td> <!-- ly = last year-->
-   <td class="ly">2.31</td>
-   <td class="ly">2.18</td>
-   <td class="ly">2.29</td>
-   <td class="ly">2.48</td>
-   <td class="ly">2.42</td>
-   <td class="ly">2.23</td>
-   <td class="ly">2.12</td>
-   <td class="ly">2.07</td>
-   <td class="ly">1.97</td>
-   <td class="ly">1.80</td>
-   <td class="ly">1.72</td>
+   <td class="ly"><b>2.62</td> <!-- ly = last year-->
+   <td class="ly"><b>2.31</td>
+   <td class="ly"><b>2.18</td>
+   <td class="ly"><b>2.29</td>
+   <td class="ly"><b>2.48</td>
+   <td class="ly"><b>2.42</td>
+   <td class="ly"><b>2.23</td>
+   <td class="ly"><b>2.12</td>
+   <td class="ly"><b>2.07</td>
+   <td class="ly"><b>1.97</td>
+   <td class="ly"><b>1.80</td>
+   <td class="ly"><b>1.72</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="py">1.67</td> <!-- py = present year-->
-   <td class="py">1.56</td>
-   <td class="py">1.50</td>
-   <td class="py">1.52</td>
-   <td class="py">1.48</td>
-   <td class="py">1.47</td>
-   <td class="py">1.48</td>
-   <td class="py">1.44</td>
-   <td class="py">1.44</td>
-   <td class="py">1.39</td>
-   <td class="py"></td>
-   <td class="py"></td>
+   <td class="py"><b>1.67</td> <!-- py = present year-->
+   <td class="py"><b>1.56</td>
+   <td class="py"><b>1.50</td>
+   <td class="py"><b>1.52</td>
+   <td class="py"><b>1.48</td>
+   <td class="py"><b>1.47</td>
+   <td class="py"><b>1.48</td>
+   <td class="py"><b>1.44</td>
+   <td class="py"><b>1.44</td>
+   <td class="py"><b>1.39</td>
+   <td class="py"><b></td>
+   <td class="py"><b></td>
   </tr>
   <tr style="text-align: center;">
    <td>Improvement</td> <!-- ((17' - 18')/17')*100 -->
@@ -300,38 +323,39 @@
    <td class="impr"></td>
   </tr>
   <tr style="text-align: center;">
-   <td rowspan="3" style="text-align: center; vertical-align: middle">FCR (Edmilson)</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">FCR (Edmilson)</td>
    <td>'17</td>
-   <td class="ly">1.01</td>
-   <td class="ly">1.22</td>
-   <td class="ly">1.45</td>
-   <td class="ly">1.56</td>
-   <td class="ly">1.60</td>
-   <td class="ly">1.57</td>
-   <td class="ly">1.49</td>
-   <td class="ly">1.40</td>
-   <td class="ly">1.28</td>
-   <td class="ly">1.14</td>
-   <td class="ly">1.06</td>
-   <td class="ly">1.04</td>
+   <td class="ly"><b>1.01</td>
+   <td class="ly"><b>1.22</td>
+   <td class="ly"><b>1.45</td>
+   <td class="ly"><b>1.56</td>
+   <td class="ly"><b>1.60</td>
+   <td class="ly"><b>1.57</td>
+   <td class="ly"><b>1.49</td>
+   <td class="ly"><b>1.40</td>
+   <td class="ly"><b>1.28</td>
+   <td class="ly"><b>1.14</td>
+   <td class="ly"><b>1.06</td>
+   <td class="ly"><b>1.04</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="py">0.76</td>
-   <td class="py">0.87</td>
-   <td class="py">0.95</td>
-   <td class="py">1.21</td>
-   <td class="py">1.33</td>
-   <td class="py">1.24</td>
-   <td class="py">1.18</td>
-   <td class="py">1.13</td>
-   <td class="py">1.09</td>
-   <td class="py">1.05</td>
-   <td class="py">1</td>
-   <td class="py">1</td>
+   <td class="py"><b>0.76</td>
+   <td class="py"><b>0.87</td>
+   <td class="py"><b>0.95</td>
+   <td class="py"><b>1.21</td>
+   <td class="py"><b>1.33</td>
+   <td class="py"><b>1.24</td>
+   <td class="py"><b>1.18</td>
+   <td class="py"><b>1.13</td>
+   <td class="py"><b>1.09</td>
+   <td class="py"><b>1.05</td>
+   <td class="py"><b>1</td>
+   <td class="py"><b>1</td>
   </tr>
   <tr style="text-align: center;">
    <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
+   <b>
    <td class="impr">Taxa </td>
    <td class="impr"></td>
    <td class="impr"></td>
@@ -344,86 +368,90 @@
    <td class="impr"></td>
    <td class="impr"></td>
    <td class="impr"></td>
+   </b>
   </tr>
   <tr style="text-align: center;">
    <td rowspan="9" style="text-align: center; vertical-align: middle">Production</td>
-   <td rowspan="3" style="text-align: center; vertical-align: middle">PRR (Jessylane)</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">PRR (Jessylane)</td>
    <td>'17</td>
-   <td class="ly">0</td>
-   <td class="ly">10</td>
-   <td class="ly">91</td>
-   <td class="ly">140</td>
-   <td class="ly">259</td>
-   <td class="ly">295</td>
-   <td class="ly">299</td>
-   <td class="ly">379</td>
-   <td class="ly">395</td>
-   <td class="ly">453</td>
-   <td class="ly">494</td>
-   <td class="ly">531</td>
+   <td class="ly"><b>0</td>
+   <td class="ly"><b>10</td>
+   <td class="ly"><b>91</td>
+   <td class="ly"><b>140</td>
+   <td class="ly"><b>259</td>
+   <td class="ly"><b>295</td>
+   <td class="ly"><b>299</td>
+   <td class="ly"><b>379</td>
+   <td class="ly"><b>395</td>
+   <td class="ly"><b>453</td>
+   <td class="ly"><b>494</td>
+   <td class="ly"><b>531</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="py">728</td>
-   <td class="py">712</td>
-   <td class="py">636</td>
-   <td class="py">579</td>
-   <td class="py">567</td>
-   <td class="py">564</td>
-   <td class="py">501</td>
-   <td class="py">486</td>
-   <td class="py">479</td>
-   <td class="py">482</td>
-   <td class="py">2</td>
-   <td class="py">2</td>
+   <td class="py"><b>728</td>
+   <td class="py"><b>712</td>
+   <td class="py"><b>636</td>
+   <td class="py"><b>579</td>
+   <td class="py"><b>567</td>
+   <td class="py"><b>564</td>
+   <td class="py"><b>501</td>
+   <td class="py"><b>486</td>
+   <td class="py"><b>479</td>
+   <td class="py"><b>482</td>
+   <td class="py"><b>2</td>
+   <td class="py"><b>2</td>
   </tr>
   <tr style="text-align: center;">
-      <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
-   <td class="impr">Taxa </td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
-   <td class="impr"></td>
+    <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
+    <b>
+    <td class="impr">Taxa </td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    <td class="impr"></td>
+    </b>
   </tr>
   <tr style="text-align: center;">
-  <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR (Mateus + Vanessa)</td>
+  <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">TLDR (Mateus + Vanessa)</td>
    <td>'17</td>
-   <td class="ly">3648</td>
-   <td class="ly">3597</td>
-   <td class="ly">3322</td>
-   <td class="ly">140</td>
-   <td class="ly">259</td>
-   <td class="ly">295</td>
-   <td class="ly">299</td>
-   <td class="ly">379</td>
-   <td class="ly">395</td>
-   <td class="ly">453</td>
-   <td class="ly">494</td>
-   <td class="ly">531</td>
+   <td class="ly"><b>3648</td>
+   <td class="ly"><b>3597</td>
+   <td class="ly"><b>3322</td>
+   <td class="ly"><b>140</td>
+   <td class="ly"><b>259</td>
+   <td class="ly"><b>295</td>
+   <td class="ly"><b>299</td>
+   <td class="ly"><b>379</td>
+   <td class="ly"><b>395</td>
+   <td class="ly"><b>453</td>
+   <td class="ly"><b>494</td>
+   <td class="ly"><b>531</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="py">2210</td>
-   <td class="py">2051</td>
-   <td class="py">2322</td>
-   <td class="py">2277</td>
-   <td class="py">567</td>
-   <td class="py">564</td>
-   <td class="py">501</td>
-   <td class="py">486</td>
-   <td class="py">479</td>
-   <td class="py">482</td>
-   <td class="py">2</td>
-   <td class="py">2</td>
+   <td class="py"><b>2210</td>
+   <td class="py"><b>2051</td>
+   <td class="py"><b>2322</td>
+   <td class="py"><b>2277</td>
+   <td class="py"><b>567</td>
+   <td class="py"><b>564</td>
+   <td class="py"><b>501</td>
+   <td class="py"><b>486</td>
+   <td class="py"><b>479</td>
+   <td class="py"><b>482</td>
+   <td class="py"><b>2</td>
+   <td class="py"><b>2</td>
   </tr>
   <tr style="text-align: center;">
+    <b>
       <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
       <td class="impr">Taxa </td>
       <td class="impr"></td>
@@ -437,40 +465,42 @@
       <td class="impr"></td>
       <td class="impr"></td>
       <td class="impr"></td>
+    </b>
   </tr>
   <tr style="text-align: center;">
-  <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR (Edmilson)</td>
+  <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">IFRR (Edmilson)</td>
    <td>'17</td>
-   <td class="ly">0.56</td>
-   <td class="ly">0.0</td>
-   <td class="ly">0.31</td>
-   <td class="ly">0.24</td>
-   <td class="ly">2.87</td>
-   <td class="ly">0.34</td>
-   <td class="ly">2.72</td>
-   <td class="ly">0.22</td>
-   <td class="ly">0.14</td>
-   <td class="ly">0.85</td>
-   <td class="ly">0.00</td>
-   <td class="ly">0.22</td>
+   <td class="ly"><b>0.56</td>
+   <td class="ly"><b>0.0</td>
+   <td class="ly"><b>0.31</td>
+   <td class="ly"><b>0.24</td>
+   <td class="ly"><b>2.87</td>
+   <td class="ly"><b>0.34</td>
+   <td class="ly"><b>2.72</td>
+   <td class="ly"><b>0.22</td>
+   <td class="ly"><b>0.14</td>
+   <td class="ly"><b>0.85</td>
+   <td class="ly"><b>0.00</td>
+   <td class="ly"><b>0.22</td>
   </tr>
   <tr style="text-align: center;">
    <td>'18</td>
-   <td class="py">0.56</td>
-   <td class="py">0.0</td>
-   <td class="py">0.31</td>
-   <td class="py">0.24</td>
-   <td class="py">2.87</td>
-   <td class="py">0.34</td>
-   <td class="py">2.72</td>
-   <td class="py">0.22</td>
-   <td class="py">0.14</td>
-   <td class="py">0.85</td>
-   <td class="py"></td>
-   <td class="py"></td>
+   <td class="py"><b>0.56</td>
+   <td class="py"><b>0.0</td>
+   <td class="py"><b>0.31</td>
+   <td class="py"><b>0.24</td>
+   <td class="py"><b>2.87</td>
+   <td class="py"><b>0.34</td>
+   <td class="py"><b>2.72</td>
+   <td class="py"><b>0.22</td>
+   <td class="py"><b>0.14</td>
+   <td class="py"><b>0.85</td>
+   <td class="py"><b></td>
+   <td class="py"><b></td>
   </tr>
   <tr style="text-align: center;">
     <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
+    <b>
     <td class="impr">Taxa </td>
     <td class="impr"></td>
     <td class="impr"></td>
@@ -483,6 +513,7 @@
     <td class="impr"></td>
     <td class="impr"></td>
     <td class="impr"></td>
+  </b>
   </tr>
   <tr style="text-align: center;">
       <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
@@ -570,7 +601,7 @@
    <td class="week"></td>
    <td class="ap">0 </td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green">x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" >x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
    <td>Weighted cumulative spectral</td>
@@ -583,7 +614,7 @@
    <td class="week"></td>
    <td  class="ap">0</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> 17% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
    <td>Failure Field Rate </td> <!-- ((up/down)*100) -->
@@ -596,7 +627,7 @@
    <td class="week" ></td>
    <td class="ap">0</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
    <td class="pts" >35 </td>
    <td class="prctg">0% </td>
    <td class="patt">35</td>
@@ -613,7 +644,7 @@
    <td class="week"></td>
    <td class="ap">51.9</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Sales</td>
@@ -626,7 +657,7 @@
    <td class="week"></td>
    <td class="ap">2980.3</td>
    <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: red"> 298% <img width="20px" src="upred.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Failure Cost Rate </td> <!-- ((up/down)*100) -->
@@ -639,7 +670,7 @@
    <td class="week"></td>
    <td class="ap">1.74</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
    <td class="pts" ">4 </td>
    <td class="prctg">0% </td>
    <td class="patt">20</td>
@@ -657,7 +688,7 @@
    <td class="week"></td>
    <td class="ap">31</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Production quantity</td>
@@ -670,7 +701,7 @@
    <td class="week"></td>
    <td class="ap">40174</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
       <td>Parts Return Rate</td>
@@ -683,7 +714,7 @@
    <td class="week"></td>
    <td class="ap">772</td>
    <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: red"> x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
    <td class="pts">3</td>
    <td class="prctg">0%</td>
    <td class="patt">15</td>
@@ -700,7 +731,7 @@
    <td class="week"></td>
    <td class="ap">62</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
    <td>Total production quantity</td>
@@ -713,7 +744,7 @@
    <td class="week"></td>
    <td class="ap">24629</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
       <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
@@ -726,7 +757,7 @@
    <td class="week"></td>
    <td class="ap">24629</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
    <td class="pts">12</td>
    <td class="prctg">0%</td>
    <td class="patt">15</td>
@@ -743,7 +774,7 @@
    <td class="week"></td>
    <td class="ap">31</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
     <td>Total production quantity</td>
@@ -751,12 +782,12 @@
    <td class="ao"></td>
    <td class="week">1000452</td>
    <td class="week">2621485</td>
-   <td class="week">1717852</td>
+   <td class="week">0852</td>
    <td class="week">1155000</td>
    <td class="week"></td>
    <td class="ap">31</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
       <td>Intern Failure Rework Rate</td>
@@ -769,7 +800,7 @@
    <td class="week"></td>
    <td class="ap">31</td>
    <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
-   <td class="impr" style="color: green"> x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
+   <td class="impr"> x% <img width="20px" src="downblack.svg" alt="Logo" /> </td>
    <td class="pts">15</td>
    <td class="prctg">100%</td>
    <td class="patt">15</td>
