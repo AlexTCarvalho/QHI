@@ -165,7 +165,6 @@
             // Feitos os resultados, vamos pras setinhas
             var lp = $(this).find('.lp');
             var ap = $(this).find('.ap');
-            console.log(lp);
             var result = (lp.text()-ap.text())/lp.text()*100;
             if (lp.text() == 0){
               if (ap.text() == 0){
@@ -174,22 +173,18 @@
                 result = -100;
               }
             }
-            var circle = $(this).find('.circle');
             var impr = $(this).find('.impr');
             if (j % 3 != 1){
               for (var i = lp.length - 1; i >= 0; i--) {
                 if(result >= 0){
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
                   impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"downwhite.svg\" alt=\"Logo\"/> </b>"
                   impr[i].bgColor = "green";
                   impr[i].style = "color: white";
                 }else if (result >= -10){
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
                   impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\"/> </b>"
                   impr[i].bgColor = "yellow";
                   impr[i].style = "color: black";
                 }else{
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
                   impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upwhite.svg\" alt=\"Logo\" /> </b>";
                   impr[i].bgColor = "red";
                   impr[i].style = "color: white";
@@ -198,17 +193,14 @@
             }else{
               for (var i = lp.length - 1; i >= 0; i--) {
                 if(result >= 10){
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlered.svg\" alt=\"Logo\" />";
                   impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"downwhite.svg\" alt=\"Logo\" /> </b>"
                   impr[i].bgColor = "red";
                   impr[i].style = "color: white"; 
                 }else if (result >= 0){
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
                   impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\" /> </b>";
                   impr[i].bgColor = "yellow";
                   impr[i].style = "color: black";
                 }else{
-                  circle[i].innerHTML = "<img width=\"20px\" src=\"circlegreen.svg\" alt=\"Logo\" />";
                   impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upwhite.svg\" alt=\"Logo\" /> </b>";
                   impr[i].bgColor = "green";
                   impr[i].style = "color: white";
@@ -248,9 +240,43 @@
             
             j++;
           });
-        });
+          
+          wtable.find('tbody tr td').each(function(){
+            $(this).innerHTML ="blablabla";
+            if(!isNaN($(this).text())){
+                var num = $(this).text().toString();
+                num = num.replace(".",",");
+              
+              var array = num.split(",");
+              if (array.length > 1){
+
+              var inteiro = array[0];
+              var tam = inteiro.length - 1;
+              console.log(inteiro +" "+ tam);
+              while(tam >= 0){
+                inteiro[tam] = inteiro[tam] + ".";
+                tam-=3;
+              }
+              tog = array.join();
+              console.log(tog);
+              
+              }else{
+                var r = '';
+                var x = 0;
+
+                for (var i = num.length; i > 0; i--) {
+                    r += num.substr(i - 1, 1) + (x == 2 && i != 1 ? '.' : '');
+                    x = x == 2 ? 0 : x + 1;
+                }
+
+                var aux = r.split('').reverse().join('');
+                console.log("Aux" + aux);
+                $(this).innerHTML = aux;
+              }
+          }
+          });
        
-  
+      });
      </script>
  </head>
 <body>
@@ -572,7 +598,7 @@
    <th style="vertical-align: middle;" colspan="3" rowspan="2">KPI</th>
    <th style="vertical-align: middle;" rowspan="2" >OCT'17 <br> Performance</th>
    <th style="vertical-align: middle;" rowspan="2" >OCT'18 <br> Objective</th>
-   <th style="vertical-align: middle;" colspan="8" >OCT'18 Performance</th>
+   <th style="vertical-align: middle;" colspan="7" >OCT'18 Performance</th>
    <th style="vertical-align: middle;" rowspan="2" >Punctuation</th>
    <th style="vertical-align: middle;" rowspan="2" >Accomplishment</th>
    <th style="vertical-align: middle;" rowspan="2" >Pattern (Padrão)</th>
@@ -584,7 +610,7 @@
    <td>W43</td>
    <td>W44</td>
    <td>Accumulate </td>
-   <td colspan="2">Improvement rate</td> <!--  ((17' - 18')/17')*100-->
+   <td>Improvement rate</td> <!--  ((17' - 18')/17')*100-->
   </tr>
  </thead>
  <tbody>
@@ -600,7 +626,6 @@
    <td class="week">2352 </td>
    <td class="week"></td>
    <td class="ap">0 </td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" >x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
@@ -613,7 +638,6 @@
    <td class="week">161409  </td>
    <td class="week"></td>
    <td  class="ap">0</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
@@ -626,7 +650,6 @@
    <td class="week" >1.46</td>
    <td class="week" ></td>
    <td class="ap">0</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
    <td class="pts" >35 </td>
    <td class="prctg">0% </td>
@@ -643,7 +666,6 @@
    <td class="week">10.3</td>
    <td class="week"></td>
    <td class="ap">51.9</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -656,7 +678,6 @@
    <td class="week">900.1</td><!-- 900.1-->
    <td class="week"></td>
    <td class="ap">2980.3</td>
-   <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -669,7 +690,6 @@
    <td class="week">1.14</td>
    <td class="week"></td>
    <td class="ap">1.74</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
    <td class="pts" ">4 </td>
    <td class="prctg">0% </td>
@@ -687,7 +707,6 @@
    <td class="week">10</td>
    <td class="week"></td>
    <td class="ap">31</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -700,7 +719,6 @@
    <td class="week">9898</td>
    <td class="week"></td>
    <td class="ap">40174</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -713,7 +731,6 @@
    <td class="week">1010</td>
    <td class="week"></td>
    <td class="ap">772</td>
-   <td class="circle"><img width="20px" src="circlered.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
    <td class="pts">3</td>
    <td class="prctg">0%</td>
@@ -730,7 +747,6 @@
    <td class="week">19</td>
    <td class="week"></td>
    <td class="ap">62</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -743,7 +759,6 @@
    <td class="week">7922</td>
    <td class="week"></td>
    <td class="ap">24629</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -756,7 +771,6 @@
    <td class="week">2398</td>
    <td class="week"></td>
    <td class="ap">24629</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
    <td class="pts">12</td>
    <td class="prctg">0%</td>
@@ -773,7 +787,7 @@
    <td class="week">10</td>
    <td class="week"></td>
    <td class="ap">31</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -782,11 +796,11 @@
    <td class="ao"></td>
    <td class="week">1000452</td>
    <td class="week">2621485</td>
-   <td class="week">0852</td>
+   <td class="week">10852</td>
    <td class="week">1155000</td>
    <td class="week"></td>
    <td class="ap">31</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   
    <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
   </tr>
   <tr style="text-align: center;">
@@ -799,7 +813,7 @@
    <td class="week">10</td>
    <td class="week"></td>
    <td class="ap">31</td>
-   <td class="circle"><img width="20px" src="circlegreen.svg" alt="Logo" /> </td>
+   
    <td class="impr"> x% <img width="20px" src="downblack.svg" alt="Logo" /> </td>
    <td class="pts">15</td>
    <td class="prctg">100%</td>
