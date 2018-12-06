@@ -21,10 +21,6 @@
 
           var mtable = $('#monthly-table');
             mtable.find('tbody tr').each(function(){
-              var rate = $(this).find('.rate');
-
-              rate.onmouseover = "getElementById('descricaoFFR').style.display='block'";
-              rate.onmouseout = "getElementById('descricaoFFR').style.display='none'";
               
               if (j % 3 == 0){ ly = [];}
               if (j % 3 == 1){ py = [];}
@@ -54,7 +50,7 @@
                     
                     if (rslt >= 0){
                       linhaIMPR[i].innerHTML = "<b>" + rslt.toFixed(0) + "% <img width=\"20px\" src=\"downblack.svg\" alt=\"Logo\" /> </b>";
-                      linhaIMPR[i].bgColor = "green";
+                      linhaIMPR[i].bgColor = "#5ce65c";
                       linhaIMPR[i].style = "color: black";
                     }else if (rslt >= -10){
                       linhaIMPR[i].innerHTML = "<b>" + rslt.toFixed(0)*(-1) + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\" /> </b>";
@@ -108,8 +104,9 @@
                   }
                   console.log("Fim do vetor");
                   */
+
+                  console.log(td2);
                 while (i < td2.length){
-                  //if (td2[i].className != '' && td2[i].className != 'patt' && td2[i].className != 'pts' && td2[i].className != 'prctg'){
                   if($.isNumeric(td2[i].innerHTML) && td2[i].className != 'patt' && td2[i].className != 'pts' && td2[i].className != 'prctg'){
                     if (ly[k].length > 0 && py[k].length > 0){ 
                       if (j < 6){var result = (ly[k]/py[k])*100;}
@@ -177,9 +174,9 @@
             if (j % 3 != 1){
               for (var i = lp.length - 1; i >= 0; i--) {
                 if(result >= 0){
-                  impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"downwhite.svg\" alt=\"Logo\"/> </b>"
-                  impr[i].bgColor = "green";
-                  impr[i].style = "color: white";
+                  impr[i].innerHTML = "<b>" + result.toFixed(0) + "% <img width=\"20px\" src=\"downblack.svg\" alt=\"Logo\"/> </b>"
+                  impr[i].bgColor = "#5ce65c";
+                  impr[i].style = "color: black";
                 }else if (result >= -10){
                   impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\"/> </b>"
                   impr[i].bgColor = "yellow";
@@ -201,9 +198,9 @@
                   impr[i].bgColor = "yellow";
                   impr[i].style = "color: black";
                 }else{
-                  impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"upwhite.svg\" alt=\"Logo\" /> </b>";
-                  impr[i].bgColor = "green";
-                  impr[i].style = "color: white";
+                  impr[i].innerHTML = "<b>" + result.toFixed(0)*-1 + "% <img width=\"20px\" src=\"uparrow.svg\" alt=\"Logo\" /> </b>";
+                  impr[i].bgColor = "#5ce65c";
+                  impr[i].style = "color: black";
                 }
               }
             }
@@ -280,12 +277,256 @@
      </script>
  </head>
 <body>
+  <!-- TABELA SEMANAL -->
+ <h1>H&A Weekly QHI Tabela 2</h1>
+ <table id="weekly-table" class="table table-striped table-bordered table-condensed table-hover">
+ <thead>
+  <tr style="text-align: center;">
+   <th style="vertical-align: middle;" colspan="3" rowspan="2">KPI</th>
+   <th style="vertical-align: middle;" rowspan="2" >OCT'17 <br> Performance</th>
+   <th style="vertical-align: middle;" rowspan="2" >OCT'18 <br> Objective</th>
+   <th style="vertical-align: middle;" colspan="7" >OCT'18 Performance</th>
+   <th style="vertical-align: middle;" rowspan="2" >Punctuation</th>
+   <th style="vertical-align: middle;" rowspan="2" >Accomplishment</th>
+   <th style="vertical-align: middle;" rowspan="2" >Pattern (Padrão)</th>
+  </tr>
+  <tr style="text-align: center; vertical-align: middle;">
+   <td>W40</td>
+   <td>W41</td>
+   <td>W42</td>
+   <td>W43</td>
+   <td>W44</td>
+   <td>Accumulate </td>
+   <td>Improvement rate</td> <!--  ((17' - 18')/17')*100-->
+  </tr>
+ </thead>
+ <tbody>
+  <tr style="text-align: center;" class = "FFR">
+   <td rowspan="6" style="vertical-align: middle">Market</td>
+   <td rowspan="3" style="vertical-align: middle">FFR</td>
+   <td>SVC Number</td>
+   <td class="lp">2727</td>
+   <td class="ao"></td>
+   <td class="week">2191 </td>
+   <td class="week">2229 </td>
+   <td class="week">2280 </td>
+   <td class="week">2352 </td>
+   <td class="week"></td>
+   <td class="ap">0 </td>
+   <td class="impr" >x% </td>
+  </tr>
+  <tr style="text-align: center;" class="FFR">
+   <td>Weighted cumulative spectral</td>
+   <td class="lp">138474  </td>
+   <td class="ao"></td>
+   <td class="week">160874  </td>
+   <td class="week">160888  </td>
+   <td class="week">161305  </td>
+   <td class="week">161409  </td>
+   <td class="week"></td>
+   <td  class="ap">0</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;" class="FFR">
+   <td>Failure Field Rate </td> <!-- ((up/down)*100) -->
+   <td class="lp"><b>1.97</td>
+   <td class="ao">1.90</td>
+   <td class="week" >1.36</td>
+   <td class="week" >1.39</td>
+   <td class="week" >1.41</td>
+   <td class="week" >1.46</td>
+   <td class="week" ></td>
+   <td class="ap">0</td>
+   <td class="impr" > x% </td>
+   <td class="pts" >35 </td>
+   <td class="prctg">0% </td>
+   <td class="patt">35</td>
+  </tr>
+  <tr style="text-align: center;" class="FCR">
+   <td rowspan="3" style="vertical-align: middle">FCR</td>
+   <td>Failure cost</td>
+   <td class="lp">63.5</td>
+   <td class="ao">60.4</td>
+   <td class="week">13.0</td>
+   <td class="week">14.6</td>
+   <td class="week">14.0</td>
+   <td class="week">10.3</td>
+   <td class="week"></td>
+   <td class="ap">51.9</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+   <td>Sales</td>
+   <td class="lp">14528.7</td>
+   <td class="ao">13802.3</td>
+   <td class="week">235.2</td><!-- 235.2 -->
+   <td class="week">1437.0</td><!--    1437.0  -->
+   <td class="week">408.0</td><!-- 408.0-->
+   <td class="week">900.1</td><!-- 900.1-->
+   <td class="week"></td>
+   <td class="ap">2980.3</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+   <td>Failure Cost Rate </td> <!-- ((up/down)*100) -->
+   <td class="lp"><b>0.44</td>
+   <td class="ao">0.44</td>
+   <td class="week">5.53</td>
+   <td class="week">1.02</td>
+   <td class="week">3.43</td>
+   <td class="week">1.14</td>
+   <td class="week"></td>
+   <td class="ap">1.74</td>
+   <td class="impr" > x% </td>
+   <td class="pts" ">4 </td>
+   <td class="prctg">0% </td>
+   <td class="patt">20</td>
+  </tr>
+  <tr style="text-align: center;">
+   <td rowspan="9" style="vertical-align: middle">Production</td>
+   <td rowspan="3" style="vertical-align: middle">PRR</td>
+   <td>Poor parts quantity</td>
+   <td class="lp">54</td>
+   <td class="ao"></td>
+   <td class="week">0</td>
+   <td class="week">6</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+   <td>Production quantity</td>
+   <td class="lp">70511</td>
+   <td class="ao"></td>
+   <td class="week">4191</td>
+   <td class="week">5002</td>
+   <td class="week">21083</td>
+   <td class="week">9898</td>
+   <td class="week"></td>
+   <td class="ap">40174</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+      <td>Parts Return Rate</td>
+   <td class="lp">766</td>
+   <td class="ao">454</td>
+   <td class="week">0</td>
+   <td class="week">1200</td>
+   <td class="week">711</td>
+   <td class="week">1010</td>
+   <td class="week"></td>
+   <td class="ap">772</td>
+   <td class="impr" > x% </td>
+   <td class="pts">3</td>
+   <td class="prctg">0%</td>
+   <td class="patt">15</td>
+  </tr>
+  <tr style="text-align: center;">
+  <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR</td>
+   <td>Poor parts quantity</td>
+   <td class="lp">131</td>
+   <td class="ao"></td>
+   <td class="week">11</td>
+   <td class="week">7</td>
+   <td class="week">25</td>
+   <td class="week">19</td>
+   <td class="week"></td>
+   <td class="ap">62</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+   <td>Total production quantity</td>
+   <td class="lp">35034</td>
+   <td class="ao"></td>
+   <td class="week">2115</td>
+   <td class="week">4738</td>
+   <td class="week">9854</td>
+   <td class="week">7922</td>
+   <td class="week"></td>
+   <td class="ap">24629</td>
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+      <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
+   <td class="lp">3729</td>
+   <td class="ao">4200</td>
+   <td class="week">5201</td>
+   <td class="week">1477</td>
+   <td class="week">2537</td>
+   <td class="week">2398</td>
+   <td class="week"></td>
+   <td class="ap">24629</td>
+   <td class="impr" > x% </td>
+   <td class="pts">12</td>
+   <td class="prctg">0%</td>
+   <td class="patt">15</td>
+  </tr>
+  <tr style="text-align: center">
+  <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR</td>
+  <td>Rework quantity</td>
+   <td class="lp">5054</td>
+   <td class="ao"></td>
+   <td class="week">2000</td>
+   <td class="week">2837</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+    <td>Total production quantity</td>
+   <td class="lp">745230</td>
+   <td class="ao"></td>
+   <td class="week">100452</td>
+   <td class="week">261485</td>
+   <td class="week">310852</td>
+   <td class="week">115000</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   
+   <td class="impr" > x% </td>
+  </tr>
+  <tr style="text-align: center;">
+      <td>Intern Failure Rework Rate</td>
+   <td class="lp">0</td>
+   <td class="ao"></td>
+   <td class="week">0</td>
+   <td class="week">0</td>
+   <td class="week">15</td>
+   <td class="week">10</td>
+   <td class="week"></td>
+   <td class="ap">31</td>
+   
+   <td class="impr"> x% </td>
+   <td class="pts">15</td>
+   <td class="prctg">100%</td>
+   <td class="patt">15</td>
+  </tr>
+  <tr style="text-align: center;">
+    <b>
+    <td class="total"colspan="3">Total</td>
+    <td colspan="7"></td>
+    <td class="ao">2229</td>
+    <td ></td>
+    <td class="pts">0</td>
+    <td class="prctg">0%</td>
+    <td class="patt">0</td>
+    </b>
+    
+  </tr>
+  
+ </tbody>
+</table>
  <h1>H&A Weekly QHI Tabela 1</h1>
  <table id = "monthly-table" class="table table-striped table-bordered table-condensed table-hover">
  <thead>
 
   <tr style="text-align: center;">
-   <th colspan="3" style="text-align: center; vertical-align: middle;">KPI</th>
+   <th colspan="3" style="text-align: center; vertical-align: middle;" >KPI</th>
    <th>Jan</th>
    <th>Feb</th>
    <th>Mar</th>
@@ -302,8 +543,8 @@
  </thead>
  <tbody>
   <tr style="text-align: center;">
-   <td rowspan="6" style="text-align: center; vertical-align: middle">Market</td>
-   <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">FFR</td>
+   <td rowspan="6" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3" >Market</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3" >FFR</td>
    <td>'17</td>
    <td class="ly"><b>2.62</td> <!-- ly = last year-->
    <td class="ly"><b>2.31</td>
@@ -333,7 +574,7 @@
    <td class="py"><b></td>
    <td class="py"><b></td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" bgcolor="#d3d3d3" >
    <td>Improvement</td> <!-- ((17' - 18')/17')*100 -->
    <td class="impr">Taxa </td>
    <td class="impr"></td>
@@ -349,7 +590,7 @@
    <td class="impr"></td>
   </tr>
   <tr style="text-align: center;">
-   <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">FCR (Edmilson)</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3" >FCR</td>
    <td>'17</td>
    <td class="ly"><b>1.01</td>
    <td class="ly"><b>1.22</td>
@@ -379,9 +620,8 @@
    <td class="py"><b>1</td>
    <td class="py"><b>1</td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" bgcolor="#d3d3d3" >
    <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
-   <b>
    <td class="impr">Taxa </td>
    <td class="impr"></td>
    <td class="impr"></td>
@@ -397,8 +637,8 @@
    </b>
   </tr>
   <tr style="text-align: center;">
-   <td rowspan="9" style="text-align: center; vertical-align: middle">Production</td>
-   <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">PRR (Jessylane)</td>
+   <td rowspan="9" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3" >Production</td>
+   <td rowspan="3" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3" >PRR </td>
    <td>'17</td>
    <td class="ly"><b>0</td>
    <td class="ly"><b>10</td>
@@ -428,7 +668,7 @@
    <td class="py"><b>2</td>
    <td class="py"><b>2</td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" bgcolor="#d3d3d3" >
     <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
     <b>
     <td class="impr">Taxa </td>
@@ -446,7 +686,7 @@
     </b>
   </tr>
   <tr style="text-align: center;">
-  <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">TLDR (Mateus + Vanessa)</td>
+  <td rowspan="3" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3" >TLDR</td>
    <td>'17</td>
    <td class="ly"><b>3648</td>
    <td class="ly"><b>3597</td>
@@ -476,7 +716,7 @@
    <td class="py"><b>2</td>
    <td class="py"><b>2</td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" bgcolor="#d3d3d3" >
     <b>
       <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
       <td class="impr">Taxa </td>
@@ -494,7 +734,7 @@
     </b>
   </tr>
   <tr style="text-align: center;">
-  <td rowspan="3" style="text-align: center; vertical-align: middle" class="rate">IFRR (Edmilson)</td>
+  <td rowspan="3" style="text-align: center; vertical-align: middle" bgcolor="#d3d3d3">IFRR</td>
    <td>'17</td>
    <td class="ly"><b>0.56</td>
    <td class="ly"><b>0.0</td>
@@ -524,7 +764,7 @@
    <td class="py"><b></td>
    <td class="py"><b></td>
   </tr>
-  <tr style="text-align: center;">
+  <tr style="text-align: center;" bgcolor="#d3d3d3">
     <td>Improvement</td> <!-- (1 - 18'/17')*100 -->
     <b>
     <td class="impr">Taxa </td>
@@ -541,348 +781,10 @@
     <td class="impr"></td>
   </b>
   </tr>
-  <tr style="text-align: center;">
-      <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
-      <td style="text-align: center";>Primeira linha</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td></td>
-  </tr>
-  <tr style="text-align: center;">
-      <td style="text-align: center";>CEO Information Reporting </td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td></td>
-  </tr>
-  <tr style="text-align: center;">
-      <td style="text-align: center";>Terceira linha</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td></td>
-  </tr>
  </tbody>
 </table>
 
-<!-- TABELA SEMANAL -->
- <h1>H&A Weekly QHI Tabela 2</h1>
- <table id="weekly-table" class="table table-striped table-bordered table-condensed table-hover">
- <thead>
-  <tr style="text-align: center;">
-   <th style="vertical-align: middle;" colspan="3" rowspan="2">KPI</th>
-   <th style="vertical-align: middle;" rowspan="2" >OCT'17 <br> Performance</th>
-   <th style="vertical-align: middle;" rowspan="2" >OCT'18 <br> Objective</th>
-   <th style="vertical-align: middle;" colspan="7" >OCT'18 Performance</th>
-   <th style="vertical-align: middle;" rowspan="2" >Punctuation</th>
-   <th style="vertical-align: middle;" rowspan="2" >Accomplishment</th>
-   <th style="vertical-align: middle;" rowspan="2" >Pattern (Padrão)</th>
-  </tr>
-  <tr style="text-align: center; vertical-align: middle;">
-   <td>W40</td>
-   <td>W41</td>
-   <td>W42</td>
-   <td>W43</td>
-   <td>W44</td>
-   <td>Accumulate </td>
-   <td>Improvement rate</td> <!--  ((17' - 18')/17')*100-->
-  </tr>
- </thead>
- <tbody>
-  <tr style="text-align: center;" class = "FFR">
-   <td rowspan="6" style="vertical-align: middle">Market</td>
-   <td rowspan="3" style="vertical-align: middle">FFR (Edmilson)</td>
-   <td>SVC Number</td>
-   <td class="lp">2727</td>
-   <td class="ao"></td>
-   <td class="week">2191 </td>
-   <td class="week">2229 </td>
-   <td class="week">2280 </td>
-   <td class="week">2352 </td>
-   <td class="week"></td>
-   <td class="ap">0 </td>
-   <td class="impr" >x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;" class="FFR">
-   <td>Weighted cumulative spectral</td>
-   <td class="lp">138474  </td>
-   <td class="ao"></td>
-   <td class="week">160874  </td>
-   <td class="week">160888  </td>
-   <td class="week">161305  </td>
-   <td class="week">161409  </td>
-   <td class="week"></td>
-   <td  class="ap">0</td>
-   <td class="impr" > x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;" class="FFR">
-   <td>Failure Field Rate </td> <!-- ((up/down)*100) -->
-   <td class="lp">1.97</td>
-   <td class="ao">1.90</td>
-   <td class="week" >1.36</td>
-   <td class="week" >1.39</td>
-   <td class="week" >1.41</td>
-   <td class="week" >1.46</td>
-   <td class="week" ></td>
-   <td class="ap">0</td>
-   <td class="impr" > x% <img width="20px" src="upgreen.svg" alt="Logo" /> </td>
-   <td class="pts" >35 </td>
-   <td class="prctg">0% </td>
-   <td class="patt">35</td>
-  </tr>
-  <tr style="text-align: center;" class="FCR">
-   <td rowspan="3" style="vertical-align: middle">FCR (Edmilson)</td>
-   <td>Failure cost</td>
-   <td class="lp">63.5</td>
-   <td class="ao">60.4</td>
-   <td class="week">13.0</td>
-   <td class="week">14.6</td>
-   <td class="week">14.0</td>
-   <td class="week">10.3</td>
-   <td class="week"></td>
-   <td class="ap">51.9</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-   <td>Sales</td>
-   <td class="lp">14528.7</td>
-   <td class="ao">13802.3</td>
-   <td class="week">235.2</td><!-- 235.2 -->
-   <td class="week">1437.0</td><!--    1437.0  -->
-   <td class="week">408.0</td><!-- 408.0-->
-   <td class="week">900.1</td><!-- 900.1-->
-   <td class="week"></td>
-   <td class="ap">2980.3</td>
-   <td class="impr" > x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-   <td>Failure Cost Rate </td> <!-- ((up/down)*100) -->
-   <td class="lp">0.44</td>
-   <td class="ao">0.44</td>
-   <td class="week">5.53</td>
-   <td class="week">1.02</td>
-   <td class="week">3.43</td>
-   <td class="week">1.14</td>
-   <td class="week"></td>
-   <td class="ap">1.74</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td class="pts" ">4 </td>
-   <td class="prctg">0% </td>
-   <td class="patt">20</td>
-  </tr>
-  <tr style="text-align: center;">
-   <td rowspan="9" style="vertical-align: middle">Production</td>
-   <td rowspan="3" style="vertical-align: middle">PRR (Jessylane)</td>
-   <td>Poor parts quantity</td>
-   <td class="lp">54</td>
-   <td class="ao"></td>
-   <td class="week">0</td>
-   <td class="week">6</td>
-   <td class="week">15</td>
-   <td class="week">10</td>
-   <td class="week"></td>
-   <td class="ap">31</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-   <td>Production quantity</td>
-   <td class="lp">70511</td>
-   <td class="ao"></td>
-   <td class="week">4191</td>
-   <td class="week">5002</td>
-   <td class="week">21083</td>
-   <td class="week">9898</td>
-   <td class="week"></td>
-   <td class="ap">40174</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-      <td>Parts Return Rate</td>
-   <td class="lp">766</td>
-   <td class="ao">454</td>
-   <td class="week">0</td>
-   <td class="week">1200</td>
-   <td class="week">711</td>
-   <td class="week">1010</td>
-   <td class="week"></td>
-   <td class="ap">772</td>
-   <td class="impr" > x% <img width="20px" src="upred.svg" alt="Logo" /> </td>
-   <td class="pts">3</td>
-   <td class="prctg">0%</td>
-   <td class="patt">15</td>
-  </tr>
-  <tr style="text-align: center;">
-  <td rowspan="3" style="text-align: center; vertical-align: middle">TLDR (Mateus + Vanessa)</td>
-   <td>Poor parts quantity</td>
-   <td class="lp">131</td>
-   <td class="ao"></td>
-   <td class="week">11</td>
-   <td class="week">7</td>
-   <td class="week">25</td>
-   <td class="week">19</td>
-   <td class="week"></td>
-   <td class="ap">62</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-   <td>Total production quantity</td>
-   <td class="lp">35034</td>
-   <td class="ao"></td>
-   <td class="week">2115</td>
-   <td class="week">4738</td>
-   <td class="week">9854</td>
-   <td class="week">7922</td>
-   <td class="week"></td>
-   <td class="ap">24629</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-      <td>Total Line Defect Rate</td> <!-- (1 - 18'/17')*100 -->
-   <td class="lp">3729</td>
-   <td class="ao">4200</td>
-   <td class="week">5201</td>
-   <td class="week">1477</td>
-   <td class="week">2537</td>
-   <td class="week">2398</td>
-   <td class="week"></td>
-   <td class="ap">24629</td>
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-   <td class="pts">12</td>
-   <td class="prctg">0%</td>
-   <td class="patt">15</td>
-  </tr>
-  <tr style="text-align: center">
-  <td rowspan="3" style="text-align: center; vertical-align: middle">IFRR (Edmilson)</td>
-  <td>Rework quantity</td>
-   <td class="lp">35054</td>
-   <td class="ao"></td>
-   <td class="week">2000</td>
-   <td class="week">2837</td>
-   <td class="week">15</td>
-   <td class="week">10</td>
-   <td class="week"></td>
-   <td class="ap">31</td>
-   
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-    <td>Total production quantity</td>
-   <td class="lp">5000000</td>
-   <td class="ao"></td>
-   <td class="week">1000452</td>
-   <td class="week">2621485</td>
-   <td class="week">10852</td>
-   <td class="week">1155000</td>
-   <td class="week"></td>
-   <td class="ap">31</td>
-   
-   <td class="impr" > x% <img width="20px" src="downgreen.svg" alt="Logo" /> </td>
-  </tr>
-  <tr style="text-align: center;">
-      <td>Intern Failure Rework Rate</td>
-   <td class="lp">0</td>
-   <td class="ao"></td>
-   <td class="week">0</td>
-   <td class="week">0</td>
-   <td class="week">15</td>
-   <td class="week">10</td>
-   <td class="week"></td>
-   <td class="ap">31</td>
-   
-   <td class="impr"> x% <img width="20px" src="downblack.svg" alt="Logo" /> </td>
-   <td class="pts">15</td>
-   <td class="prctg">100%</td>
-   <td class="patt">15</td>
-  </tr>
-  <tr style="text-align: center;">
-      <td rowspan="3" style="text-align: center; vertical-align: middle">Issue</td>
-      <td colspan="2" style="text-align: center";>Primeira linha</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-   <td>- </td>
-   <td>-</td>
-  </tr>
-  <tr style="text-align: center;">
-      <td colspan="2" style="text-align: center";>CEO Information Reporting</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td class="number">0</td>
-      <td></td>
-      <td>-</td>
-      <td>-</td>
-   <td>- </td>
-   <td>- </td>
-   <td>-</td>
-  </tr>
-  <tr style="text-align: center;">
-      <td colspan="2" style="text-align: center";>Terceira linha</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td></td>
-      <td>-</td>
-      <td>-</td>
-   <td>- </td>
-   <td>- </td>
-   <td>-</td>
-  </tr>
-  <tr style="text-align: center;">
-    <b>
-    <td class="total"colspan="3">Total</td>
-    <td colspan="7"></td>
-    <td class="ao">2229</td>
-    <td colspan="2"></td>
-    <td class="pts">0</td>
-    <td class="prctg">0%</td>
-    <td class="patt">0</td>
-    </b>
-    
-  </tr>
-  
- </tbody>
-</table>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
