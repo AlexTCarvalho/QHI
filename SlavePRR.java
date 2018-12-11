@@ -5,29 +5,6 @@ import java.awt.event.KeyEvent;
 import java.awt.datatransfer.*;
 import java.awt.*;
 
-/* TUTORIAL
-robot.mouseMove(78, 73);
-leftClick();
-leftHoldClick();
-rigthClick();        
-robot.delay(2000);
-type("141414");
-//Enter
-robot.keyPress(KeyEvent.VK_ENTER);
-robot.keyRelease(KeyEvent.VK_ENTER);
-//Double Click KICK
-robot.mousePress  (InputEvent.BUTTON1_MASK);
-robot.mouseRelease(InputEvent.BUTTON1_MASK);
-robot.mousePress  (InputEvent.BUTTON1_MASK);
-robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Para puxar, usar essa combinação
-robot.mouseMove(600, 206); DE ONDE
-leftHoldClick();
-robot.mouseMove(542, 899); PARA ONDE  
-robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Apaga um caractere AVÁ!
-apagar();
-*/
 
 
 public class SlavePRR
@@ -109,8 +86,8 @@ public class SlavePRR
 	   leftClick();
 	   robot.mouseMove(470,290);
 	   leftClick();
-	   type("INSERT INTO bd_lg.prr_w (")
-	   prodquan = captureclipboard();
+	   type("INSERT INTO bd_lg.prr_w (prodquant, ppq, ppm) VALUES (");
+	   prodquant = captureclipboard();
 	   robot.keyPress(KeyEvent.VK_CONTROL);
        robot.keyPress(KeyEvent.VK_V);
        robot.keyRelease(KeyEvent.VK_V);
@@ -139,9 +116,41 @@ public class SlavePRR
        // Habilitar Edição
        robot.mouse(820,67);
        leftClick();
-       robot.mouse(441,806);
+       // Clica na célula
+       robot.mouse(417,804);
        leftClick();
-
+       leftClick();
+       type("=SOMA(Z2:Z31)");
+       robot.keyPress(KeyEvent.VK_ENTER);
+       robot.keyRelease(KeyEvent.VK_ENTER);
+       robot.mouse(422,766);
+       rightClick();
+       robot.mouse(572,443);
+       leftClick();
+    // Acessa Internet Explorer
+       robot.mouseMove(101,885);
+	   robot.delay(2000);
+	   robot.mouseMove(133,780);
+	   leftClick();
+	// Acessa o "bd_lg" do BD
+	   robot.mouseMove(83, 249);
+	   leftClick();
+	   robot.delay(5000);
+	// Clica em "SQL"
+	   robot.mouseMove(399,142);
+	   leftClick();
+	   robot.mouseMove(470,290);
+	   leftClick();
+	   String ppq = captureclipboard();
+	   type(", ");
+	   robot.keyPress(KeyEvent.VK_CONTROL);
+       robot.keyPress(KeyEvent.VK_V);
+       robot.keyRelease(KeyEvent.VK_V);
+       robot.keyRelease(KeyEvent.VK_CONTROL);
+       String ppm = ((parseFloat(ppq)/parseFloat(prodquant))*1000000).toString();
+       type(", "+ ppm + ");");
+       robot.mouseMove(1533,536);
+       leftClick();
 
 	// Fim
   }
@@ -198,17 +207,25 @@ public class SlavePRR
   }
 }
 
-private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); //variável estática com o Clipboard
+private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
 	
 	private static String captureclipboard() throws UnsupportedFlavorException, IOException {
 		try {
 			if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
-				return clipboard.getData(DataFlavor.stringFlavor).toString();//Retorna o texto na Área de Transferência.
+				return clipboard.getData(DataFlavor.stringFlavor).toString();
 			else
-				return "";//Não há texto na Área de Transferência, então Retorna uma String vazia.
+				return "";
 		} catch (IllegalStateException e) {
-			System.out.println("\n> A Área de Transferência está indisponível neste instante: "+e);
-			sleep(100); //"Thread.sleep(100)": aguardamos 100ms para depois tentar ler a Clipboard novamente.
-			return captureclipboard(); //Recursividade: Tentamos ler a Clipboard novamente, até conseguir.
+			System.out.println("\n> A Area de Transferência está indisponível neste instante: "+e);
+			sleep(100); 
+			return captureclipboard(); 
+		}
+	}
+
+	private static void sleep(long millissegundos) {
+		try {
+			Thread.sleep(millissegundos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
