@@ -1,9 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package slavetldr;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.datatransfer.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 /* TUTORIAL
 robot.mouseMove(78, 73);
@@ -36,73 +46,151 @@ public class SlaveTLDR
 
   public static void main(String[] args) throws Exception
   {
+        
 	new SlaveTLDR();  
   }
   
+  private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
+	
+	private static String captureclipboard() throws UnsupportedFlavorException, IOException {
+		try {
+			if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
+				return clipboard.getData(DataFlavor.stringFlavor).toString();
+			else
+				return "";
+		} catch (IllegalStateException e) {
+			System.out.println("\n> A Area de Transferência está indisponível neste instante: "+e);
+			sleep(100); 
+			return captureclipboard(); 
+		}
+	}
+
+	private static void sleep(long millissegundos) {
+		try {
+			Thread.sleep(millissegundos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+  
   public SlaveTLDR() throws Exception
   {
+      
+    	Date data = new Date();
+        Calendar cal = Calendar.getInstance();
+    	cal.setTime(data);
+        String week = Integer.toString(cal.get(Calendar.WEEK_OF_YEAR));
+        String month = Integer.toString(cal.get(Calendar.MONTH)+1);
+        String year = Integer.toString(cal.get(Calendar.YEAR));
            robot.mouseMove(96, 887);
            robot.delay(2000);
-           robot.mouseMove(341,778);
-           leftClick();
-	  // Clica no GMES
-
-	   robot.mouseMove(1467, 378);
-	   leftClick();
-	   robot.delay(8000);
+           moveclica(341, 778);
+	   // Clica no GMES
+          
+           moveclica(1435, 371);
+	   robot.delay(15000);
            
            // Caso tenham avisos
-           robot.mouseMove(448,133);
-	   leftClick();
-           robot.mouseMove(431,111);
-	   leftClick();
+           moveclica(448, 133);
+           moveclica(431, 111);
+           moveclica(439, 127);
+           moveclica(419, 109);
 
 	// Clica na coisa no canto direito
            
-           robot.mouseMove(1589, 480);
-	   leftClick();
-	   robot.delay(200);
+           moveclica(1589, 480);
+	   robot.delay(1000);
 
 	// Seleciona Global View
 	   
-	   robot.mouseMove(1555, 182);
-	   leftClick();
+           moveclica(1558,180);
+           leftClick();
            robot.delay(30000);
         
         // Clica na coisa no canto direito
            
-           robot.mouseMove(1589, 480);
-	   leftClick();
+           moveclica(1589, 480);
 	   robot.delay(200);
-
-	// Clica no Favorite
-
-	   robot.mouseMove(1566, 232);
-	   leftClick();
-	   robot.delay(400);
-	// Clica em Quality KPI Trend
-	   robot.mouseMove(1399, 322);
-	   leftClick();
-	   robot.delay(10000);
+           
+        // Clica no KPI de cima
+           moveclica(226, 78);
+           robot.delay(2000);
+        // Clica no Quality Trend
+           moveclica(471, 158);
+	   robot.delay(8000);
 
 	// Clica em Weekly
-
-	   robot.mouseMove(171, 354);
-	   leftClick();
-           robot.mouseMove(171, 356);
-	   leftClick();
-           robot.mouseMove(252, 577);
-	   leftClick();
-           robot.mouseMove(176, 603);
-	   leftClick();
-           robot.mouseMove(175, 628);
-	   leftClick();
-           robot.mouseMove(141, 590);
-	   leftClick();
-           robot.mouseMove(238, 657);
-	   leftClick();
-	// Faz o q dps?
-	  
+           moveclica(163, 345);
+	   robot.delay(2000);
+        // Clica em LINE
+           moveclica(196, 571);
+	   robot.delay(1000);
+        // Clica em ALL
+           moveclica(171, 594);
+	   robot.delay(1000);
+        // Seleciona AA1
+           moveclica(166, 619);
+        // Tira a lista
+           moveclica(88, 773);
+        // Search
+           moveclica(236, 649);
+           robot.delay(7000);
+	// Excel
+	   moveclica(1456, 175);
+           robot.delay(5000);
+        // Abre o arquivo
+           moveclica(1036, 840);
+           leftClick();
+           leftClick();
+           robot.delay(10000);
+        // Arrasta pra maximizar
+           arrasta(1281, 113, 1072, 1);
+        // Copia cada um
+           clicadireita(458, 177);
+           moveclica(509,216);
+           String tpq = captureclipboard();
+           clicadireita(460, 198);
+           moveclica(516,229);
+           String defect = captureclipboard();
+           clicadireita(463, 340);
+           moveclica(511, 371);
+           String ppm = captureclipboard();
+           
+           acessa();
+           
+	   type("INSERT INTO tldr");
+           underline();
+           type("w ");
+           abrirParenteses();
+           type("defect");
+           virgula();
+           type("tpq");
+           virgula();
+           type("ppm");
+           virgula();
+           type("week");
+           virgula();
+           type("month");
+           virgula();
+           type("year");
+           fecharParenteses();
+           type(" VALUES");
+           abrirParenteses();
+           type(defect);
+           virgula();
+           type(tpq);
+           virgula();
+           type(ppm);
+           virgula();
+           type(week);
+           virgula();
+           type(month);
+           virgula();
+           type(year);
+           fecharParenteses();
+           pontoevirgula();
+           moveclica(1531, 537);
+           
 	// Fim
   }
   
@@ -110,7 +198,7 @@ public class SlaveTLDR
   {
     robot.mousePress(InputEvent.BUTTON1_MASK);
     robot.delay(200);
-	robot.mouseRelease(InputEvent.BUTTON1_MASK);
+    robot.mouseRelease(InputEvent.BUTTON1_MASK);
     robot.delay(200);
   }
   
@@ -155,5 +243,81 @@ public class SlaveTLDR
       robot.keyPress(code);
       robot.keyRelease(code);
     }
+  }
+  private void abrirParenteses(){
+    robot.keyPress(KeyEvent.VK_SHIFT);
+    robot.keyPress(KeyEvent.VK_9);
+    robot.keyRelease(KeyEvent.VK_SHIFT);
+  }
+
+  private void fecharParenteses(){
+    robot.keyPress(KeyEvent.VK_SHIFT);
+    robot.keyPress(KeyEvent.VK_0);
+    robot.keyRelease(KeyEvent.VK_SHIFT);
+  }
+  
+  private void aspaSimples(){
+    robot.keyPress(222);
+    robot.keyRelease(222);
+  }
+
+
+  private void aspaDupla(){
+    robot.keyPress(KeyEvent.VK_SHIFT);
+    robot.keyPress(222);
+    robot.keyRelease(KeyEvent.VK_SHIFT);
+  }
+  private void underline(){
+    robot.keyPress(KeyEvent.VK_SHIFT);
+    robot.keyPress(KeyEvent.VK_MINUS);
+    robot.keyRelease(KeyEvent.VK_MINUS);
+    robot.keyRelease(KeyEvent.VK_SHIFT);
+  }
+  private void virgula(){
+    robot.keyPress(KeyEvent.VK_COMMA);
+    robot.keyRelease(KeyEvent.VK_COMMA);
+  }
+  
+  private void pontoevirgula(){
+      robot.keyPress(KeyEvent.VK_SEMICOLON);
+      robot.keyRelease(KeyEvent.VK_SEMICOLON);
+  }
+  
+  private void doispontos(){
+    robot.keyPress(KeyEvent.VK_SHIFT);
+    robot.keyPress(KeyEvent.VK_SEMICOLON);
+    robot.keyRelease(KeyEvent.VK_SEMICOLON);
+    robot.keyRelease(KeyEvent.VK_SHIFT);
+  }
+  
+  private void moveclica(int x, int y){
+      robot.mouseMove(x, y);
+      leftClick();
+  }
+  
+  private void clicadireita(int x, int y){
+      robot.mouseMove(x, y);
+      rightClick();
+  }
+  
+  private void arrasta(int x1, int y1, int x2, int y2){
+      robot.mouseMove(x1, y1);
+      leftHoldClick();
+      robot.mouseMove(x2, y2);
+      robot.mouseRelease(InputEvent.BUTTON1_MASK);
+      robot.delay(200);
+  }
+  
+  private void acessa(){
+              // Vai no IE
+	   robot.mouseMove(101,885);
+	   robot.delay(2000);
+           moveclica(133, 780);
+	// Acessa o "bd_lg" do BD
+           moveclica(70, 185);
+	   robot.delay(5000);
+	// Clica em "SQL"
+           moveclica(387, 96);
+           moveclica(470, 290);
   }
 }
