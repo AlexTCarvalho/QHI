@@ -25,7 +25,7 @@ robot.mouseMove(600, 206); DE ONDE
 leftHoldClick();
 robot.mouseMove(542, 899); PARA ONDE  
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Apaga um caractere AV√Å!
+//Apaga um caractere AV√?!
 apagar();
 */
 
@@ -41,56 +41,66 @@ public class SlaveTLDR
   
   public SlaveTLDR() throws Exception
   {
+           robot.mouseMove(96, 887);
+           robot.delay(2000);
+           robot.mouseMove(341,778);
+           leftClick();
 	  // Clica no GMES
 
-	   robot.mouseMove(1500, 375);
+	   robot.mouseMove(1467, 378);
 	   leftClick();
 	   robot.delay(8000);
+           
+           // Caso tenham avisos
+           robot.mouseMove(448,133);
+	   leftClick();
+           robot.mouseMove(431,111);
+	   leftClick();
 
 	// Clica na coisa no canto direito
-	   
-	   robot.mouseMove(1595, 450);
+           
+           robot.mouseMove(1589, 480);
 	   leftClick();
-	   robot.delay(2000);
-
-
-
+	   robot.delay(200);
 
 	// Seleciona Global View
 	   
-	   robot.mouseMove(1570, 150);
-	   robot.delay(25000);
-
-	// Clica na coisa no canto direito
-	   
-	   robot.mouseMove(1595, 450);
+	   robot.mouseMove(1555, 182);
 	   leftClick();
-	   robot.delay(2000);
+           robot.delay(30000);
+        
+        // Clica na coisa no canto direito
+           
+           robot.mouseMove(1589, 480);
+	   leftClick();
+	   robot.delay(200);
 
 	// Clica no Favorite
 
-	   robot.mouseMove(1570, 200);
+	   robot.mouseMove(1566, 232);
 	   leftClick();
-	   robot.delay(1000);
+	   robot.delay(400);
 	// Clica em Quality KPI Trend
-	   robot.mouseMove(1500, 333);
+	   robot.mouseMove(1399, 322);
 	   leftClick();
 	   robot.delay(10000);
 
 	// Clica em Weekly
 
-	   robot.mouseMove(180, 333);
-	// Clica em LINE
-	   robot.mouseMove(185, 575);
-	// Clica em ALL
-	   robot.mouseMove(185, 581);
-	// Clica no AA1
-	   robot.mouseMove(185, 587);
-	// Clica em algum canto
-	   robot.mouseMove(75, 587);
-	// Clica em Search
-	   robot.mouseMove(375, 625);
-
+	   robot.mouseMove(171, 354);
+	   leftClick();
+           robot.mouseMove(171, 356);
+	   leftClick();
+           robot.mouseMove(252, 577);
+	   leftClick();
+           robot.mouseMove(176, 603);
+	   leftClick();
+           robot.mouseMove(175, 628);
+	   leftClick();
+           robot.mouseMove(141, 590);
+	   leftClick();
+           robot.mouseMove(238, 657);
+	   leftClick();
 	// Faz o q dps?
 	  
 	// Fim
