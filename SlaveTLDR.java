@@ -30,12 +30,12 @@ robot.mousePress  (InputEvent.BUTTON1_MASK);
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
 robot.mousePress  (InputEvent.BUTTON1_MASK);
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Para puxar, usar essa combinação
+//Para puxar, usar essa combinaÃ§Ã£o
 robot.mouseMove(600, 206); DE ONDE
 leftHoldClick();
 robot.mouseMove(542, 899); PARA ONDE  
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Apaga um caractere AV�?!
+//Apaga um caractere AVÃ�!
 apagar();
 */
 
@@ -47,87 +47,89 @@ public class SlaveTLDR
   public static void main(String[] args) throws Exception
   {
         
-	new SlaveTLDR();  
+  new SlaveTLDR();  
   }
   
   private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
-	
-	private static String captureclipboard() throws UnsupportedFlavorException, IOException {
-		try {
-			if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
-				return clipboard.getData(DataFlavor.stringFlavor).toString();
-			else
-				return "";
-		} catch (IllegalStateException e) {
-			System.out.println("\n> A Area de Transferência está indisponível neste instante: "+e);
-			sleep(100); 
-			return captureclipboard(); 
-		}
-	}
+  
+  private static String captureclipboard() throws UnsupportedFlavorException, IOException {
+    try {
+      if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
+        return clipboard.getData(DataFlavor.stringFlavor).toString();
+      else
+        return "";
+    } catch (IllegalStateException e) {
+      System.out.println("\n> A Area de TransferÃªncia estÃ¡ indisponÃ­vel neste instante: "+e);
+      sleep(100); 
+      return captureclipboard(); 
+    }
+  }
 
-	private static void sleep(long millissegundos) {
-		try {
-			Thread.sleep(millissegundos);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+  private static void sleep(long millissegundos) {
+    try {
+      Thread.sleep(millissegundos);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
   
   public SlaveTLDR() throws Exception
   {
       
-    	Date data = new Date();
+      Date data = new Date();
         Calendar cal = Calendar.getInstance();
-    	cal.setTime(data);
+      cal.setTime(data);
         String week = Integer.toString(cal.get(Calendar.WEEK_OF_YEAR));
         String month = Integer.toString(cal.get(Calendar.MONTH)+1);
         String year = Integer.toString(cal.get(Calendar.YEAR));
            robot.mouseMove(96, 887);
            robot.delay(2000);
            moveclica(341, 778);
-	   // Clica no GMES
+     // Clica no GMES
           
-           moveclica(1435, 371);
-	   robot.delay(15000);
+           // Clica no GMES
+          // Se for a Vanessa, é esse
+           //moveclica(1435, 371); 
+           // Se for a Lane, é esse
+           moveclica(1466, 410);
            
+           robot.delay(40000);
            // Caso tenham avisos
            moveclica(448, 133);
            moveclica(431, 111);
            moveclica(439, 127);
            moveclica(419, 109);
 
-	// Clica na coisa no canto direito
+  // Clica na coisa no canto direito
            
            moveclica(1589, 480);
-	   robot.delay(1000);
+     robot.delay(1000);
 
-	// Seleciona Global View
-	   
+  // Seleciona Global View
+     
            moveclica(1558,180);
            leftClick();
-           robot.delay(30000);
+           robot.delay(8000);
+           moveclica(943, 450);
+           robot.delay(37000);
         
-        // Clica na coisa no canto direito
-           
-           moveclica(1589, 480);
-	   robot.delay(200);
            
         // Clica no KPI de cima
            moveclica(226, 78);
            robot.delay(2000);
         // Clica no Quality Trend
            moveclica(471, 158);
-	   robot.delay(8000);
+     robot.delay(8000);
 
-	// Clica em Weekly
+  // Clica em Weekly
            moveclica(163, 345);
-	   robot.delay(2000);
+     robot.delay(2000);
         // Clica em LINE
            moveclica(196, 571);
-	   robot.delay(1000);
+     robot.delay(1000);
         // Clica em ALL
            moveclica(171, 594);
-	   robot.delay(1000);
+     robot.delay(1000);
         // Seleciona AA1
            moveclica(166, 619);
         // Tira a lista
@@ -135,8 +137,8 @@ public class SlaveTLDR
         // Search
            moveclica(236, 649);
            robot.delay(7000);
-	// Excel
-	   moveclica(1456, 175);
+  // Excel
+     moveclica(1539, 179);
            robot.delay(5000);
         // Abre o arquivo
            moveclica(1036, 840);
@@ -144,10 +146,10 @@ public class SlaveTLDR
            leftClick();
            robot.delay(10000);
         // Arrasta pra maximizar
-           arrasta(1281, 113, 1072, 1);
+           //arrasta(1281, 113, 1072, 1);
         // Copia cada um
-           clicadireita(458, 177);
-           moveclica(509,216);
+           clicadireita(461, 177);
+           moveclica(521,221);
            String tpq = captureclipboard();
            clicadireita(460, 198);
            moveclica(516,229);
@@ -158,7 +160,7 @@ public class SlaveTLDR
            
            acessa();
            
-	   type("INSERT INTO tldr");
+     type("INSERT INTO tldr");
            underline();
            type("w ");
            abrirParenteses();
@@ -191,7 +193,7 @@ public class SlaveTLDR
            pontoevirgula();
            moveclica(1531, 537);
            
-	// Fim
+  // Fim
   }
   
   private void leftClick()
@@ -212,16 +214,16 @@ public class SlaveTLDR
   {
     robot.mousePress(InputEvent.BUTTON3_MASK);
     robot.delay(200);
-	robot.mouseRelease(InputEvent.BUTTON3_MASK);
+  robot.mouseRelease(InputEvent.BUTTON3_MASK);
     robot.delay(200);
   }
   
   private void apagar()
   {
-	robot.keyPress(KeyEvent.VK_BACK_SPACE);
-	robot.delay(100);
-	robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-	robot.delay(100);
+  robot.keyPress(KeyEvent.VK_BACK_SPACE);
+  robot.delay(100);
+  robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+  robot.delay(100);
   }
   
   private void type(int i)
@@ -310,14 +312,15 @@ public class SlaveTLDR
   
   private void acessa(){
               // Vai no IE
-	   robot.mouseMove(101,885);
-	   robot.delay(2000);
+     robot.mouseMove(87,875);
+     robot.delay(3000);
            moveclica(133, 780);
-	// Acessa o "bd_lg" do BD
+  // Acessa o "bd_lg" do BD
            moveclica(70, 185);
-	   robot.delay(5000);
-	// Clica em "SQL"
+     robot.delay(7000);
+  // Clica em "SQL"
            moveclica(387, 96);
+           robot.delay(2000);
            moveclica(470, 290);
   }
 }
