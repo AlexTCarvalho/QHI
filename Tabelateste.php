@@ -71,9 +71,6 @@
           var j = 0;
           var ptsv = [], pattv = [];
           wtable.find('tbody tr').each(function(){
-            /* PARTE TEMPORÁRIA DO CÓDIGO
-            SE A ORDEM FOR FFR-FCR-PRR-TLDR-IFRR ENTÃO É DESSE JEITO
-            */
             if (j % 3 == 0){ ly = [];}
             if (j % 3 == 1){ py = [];}
             var td = $(this).find('td').each(function(){
@@ -92,20 +89,7 @@
             var td2 = $(this).find('td');
               if (j % 3 == 2){
                 var i = 0, k = 0;
-                /*
-                console.log("Vetor ly:");
-                  for (var i = 0; i < ly.length; i++) {
-                    console.log(ly[i]);
-                  }
-                  console.log("Fim do vetor");
-                console.log("Vetor py:");
-                  for (var i = 0; i < py.length; i++) {
-                    console.log(py[i]);
-                  }
-                  console.log("Fim do vetor");
-                  */
 
-                  console.log(td2);
                 while (i < td2.length){
                   if($.isNumeric(td2[i].innerHTML) && td2[i].className != 'patt' && td2[i].className != 'pts' && td2[i].className != 'prctg'){
                     if (ly[k].length > 0 && py[k].length > 0){ 
@@ -125,15 +109,6 @@
             var ap = $(this).find('.ap');
             var vetaps = [0, 0];
             for (var i = ap.length - 1; i >= 0; i--) {
-              /*
-              if (j % 3 != 2){
-                console.log("Entrou aqui");
-                vetaps[j % 3] = ap[i].innerHTML;
-              }else{
-                var result = (vetaps[0]/vetaps[1])*100;
-                ap[i].innerHTML = "<b>" + result.toFixed(2);
-              }
-              */
               if (j < 3){
                 for (var k = 0;k < week.length; k++) {
                   if (week[k].innerHTML != ''){
@@ -148,14 +123,19 @@
                   }
                   
                 }
-                ap[i].innerHTML = "<b>" + soma.toFixed(1);
+                if (j < 6){
+                  ap[i].innerHTML = "<b>" + soma.toFixed(1);
+                }else{
+                  ap[i].innerHTML = "<b>" + soma.toFixed(0);
+                }
+                
                 if (j % 3 == 0){
                   ap1 = soma.toFixed(1);
                 }else if (j % 3 == 1){ 
                   ap2 = soma.toFixed(1);
                 }else{
                   if (j < 6){ ap[i].innerHTML = "<b>" + (ap1/ap2*100).toFixed(2);}
-                  else{ ap[i].innerHTML = "<b>" + (ap1/ap2*1000000).toFixed(2);}
+                  else{ ap[i].innerHTML = "<b>" + (ap1/ap2*1000000).toFixed(0);}
                 }
               }
             }
@@ -239,37 +219,28 @@
           });
           
           wtable.find('tbody tr td').each(function(){
-            $(this).innerHTML ="blablabla";
             if(!isNaN($(this).text())){
-                var num = $(this).text().toString();
-                num = num.replace(".",",");
-              
-              var array = num.split(",");
-              if (array.length > 1){
 
-              var inteiro = array[0];
-              var tam = inteiro.length - 1;
-              console.log(inteiro +" "+ tam);
-              while(tam >= 0){
-                inteiro[tam] = inteiro[tam] + ".";
-                tam-=3;
-              }
-              tog = array.join();
-              console.log(tog);
-              
-              }else{
-                var r = '';
-                var x = 0;
+                var tembold = false;
+                  if($(this).innerHTML.indexOf("<b>") != -1){
+                    tembold = true;
+                  }
+                var num = $(this).text();
 
-                for (var i = num.length; i > 0; i--) {
-                    r += num.substr(i - 1, 1) + (x == 2 && i != 1 ? '.' : '');
-                    x = x == 2 ? 0 : x + 1;
-                }
+                //var num = num.toLocaleString('pt-BR');
+                //$(this).text(num);
+                 var numero = num.split('.');
+                 if (numero.length > 1){
+                  numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
+                  var num = numero.join(',');
+                 }else{
+                  var num = num.split('').reverse().join('').split(/(\d{3})/).filter(Boolean)
+    .join('.').split('').reverse().join('');
+                 }
+                 
 
-                var aux = r.split('').reverse().join('');
-                console.log("Aux" + aux);
-                $(this).innerHTML = aux;
-              }
+                $(this).text(num);
+               
           }
           });
        
@@ -307,22 +278,22 @@
    <td>SVC Number</td>
    <td class="lp">2727</td>
    <td class="ao"></td>
-   <td class="week">2191 </td>
-   <td class="week">2229 </td>
-   <td class="week">2280 </td>
-   <td class="week">2352 </td>
+   <td class="week">2191</td>
+   <td class="week">2229</td>
+   <td class="week">2280</td>
+   <td class="week">2352</td>
    <td class="week"></td>
    <td class="ap">0 </td>
    <td class="impr" >x% </td>
   </tr>
   <tr style="text-align: center;" class="FFR">
    <td>Weighted cumulative spectral</td>
-   <td class="lp">138474  </td>
+   <td class="lp">138474</td>
    <td class="ao"></td>
-   <td class="week">160874  </td>
-   <td class="week">160888  </td>
-   <td class="week">161305  </td>
-   <td class="week">161409  </td>
+   <td class="week">160874</td>
+   <td class="week">160888</td>
+   <td class="week">161305</td>
+   <td class="week">161409</td>
    <td class="week"></td>
    <td  class="ap">0</td>
    <td class="impr" > x% </td>
