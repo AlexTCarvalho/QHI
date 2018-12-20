@@ -221,10 +221,6 @@
           wtable.find('tbody tr td').each(function(){
             if(!isNaN($(this).text())){
 
-                var tembold = false;
-                  if($(this).innerHTML.indexOf("<b>") != -1){
-                    tembold = true;
-                  }
                 var num = $(this).text();
 
                 //var num = num.toLocaleString('pt-BR');
@@ -237,11 +233,26 @@
                   var num = num.split('').reverse().join('').split(/(\d{3})/).filter(Boolean)
     .join('.').split('').reverse().join('');
                  }
-                 
 
                 $(this).text(num);
                
           }
+
+              
+          });
+
+
+          wtable.find('tbody tr').each(function(){
+            var td = $(this).find('td');
+                var i = 0;
+
+                while (i < td.length){
+                  var str = td[i].innerHTML;
+                  if(td[i].className == 'lp' || td[i].className == 'ap' || td[i].className == 'ao'){
+                      td[i].innerHTML = "<b>"+str;
+                  }
+                  i++;
+                }
           });
        
       });
