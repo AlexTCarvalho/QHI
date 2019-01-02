@@ -30,12 +30,12 @@ robot.mousePress  (InputEvent.BUTTON1_MASK);
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
 robot.mousePress  (InputEvent.BUTTON1_MASK);
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Para puxar, usar essa combinaÃ§Ã£o
+//Para puxar, usar essa combinação
 robot.mouseMove(600, 206); DE ONDE
 leftHoldClick();
 robot.mouseMove(542, 899); PARA ONDE  
 robot.mouseRelease(InputEvent.BUTTON1_MASK);
-//Apaga um caractere AVÃ�!
+//Apaga um caractere AV�?!
 apagar();
 */
 
@@ -47,51 +47,51 @@ public class SlaveTLDR
   public static void main(String[] args) throws Exception
   {
         
-  new SlaveTLDR();  
+	new SlaveTLDR();  
   }
   
   private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
-  
-  private static String captureclipboard() throws UnsupportedFlavorException, IOException {
-    try {
-      if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
-        return clipboard.getData(DataFlavor.stringFlavor).toString();
-      else
-        return "";
-    } catch (IllegalStateException e) {
-      System.out.println("\n> A Area de TransferÃªncia estÃ¡ indisponÃ­vel neste instante: "+e);
-      sleep(100); 
-      return captureclipboard(); 
-    }
-  }
+	
+	private static String captureclipboard() throws UnsupportedFlavorException, IOException {
+		try {
+			if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
+				return clipboard.getData(DataFlavor.stringFlavor).toString();
+			else
+				return "";
+		} catch (IllegalStateException e) {
+			System.out.println("\n> A Area de Transferência está indisponível neste instante: "+e);
+			sleep(100); 
+			return captureclipboard(); 
+		}
+	}
 
-  private static void sleep(long millissegundos) {
-    try {
-      Thread.sleep(millissegundos);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-  }
+	private static void sleep(long millissegundos) {
+		try {
+			Thread.sleep(millissegundos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
   
   public SlaveTLDR() throws Exception
   {
       
-      Date data = new Date();
+    	Date data = new Date();
         Calendar cal = Calendar.getInstance();
-      cal.setTime(data);
+    	cal.setTime(data);
         String week = Integer.toString(cal.get(Calendar.WEEK_OF_YEAR));
         String month = Integer.toString(cal.get(Calendar.MONTH)+1);
         String year = Integer.toString(cal.get(Calendar.YEAR));
            robot.mouseMove(96, 887);
            robot.delay(2000);
            moveclica(341, 778);
-     // Clica no GMES
+	   // Clica no GMES
           
            // Clica no GMES
-          // Se for a Vanessa, é esse
-           //moveclica(1435, 371); 
-           // Se for a Lane, é esse
-           moveclica(1466, 410);
+          // Se for a Vanessa, � esse
+           moveclica(1435, 371); 
+           // Se for a Lane, � esse
+           //moveclica(1466, 410);
            
            robot.delay(40000);
            // Caso tenham avisos
@@ -100,13 +100,13 @@ public class SlaveTLDR
            moveclica(439, 127);
            moveclica(419, 109);
 
-  // Clica na coisa no canto direito
+	// Clica na coisa no canto direito
            
            moveclica(1589, 480);
-     robot.delay(1000);
+	   robot.delay(1000);
 
-  // Seleciona Global View
-     
+	// Seleciona Global View
+	   
            moveclica(1558,180);
            leftClick();
            robot.delay(8000);
@@ -119,17 +119,17 @@ public class SlaveTLDR
            robot.delay(2000);
         // Clica no Quality Trend
            moveclica(471, 158);
-     robot.delay(8000);
+	   robot.delay(8000);
 
-  // Clica em Weekly
+	// Clica em Weekly
            moveclica(163, 345);
-     robot.delay(2000);
+	   robot.delay(2000);
         // Clica em LINE
            moveclica(196, 571);
-     robot.delay(1000);
+	   robot.delay(1000);
         // Clica em ALL
            moveclica(171, 594);
-     robot.delay(1000);
+	   robot.delay(1000);
         // Seleciona AA1
            moveclica(166, 619);
         // Tira a lista
@@ -137,8 +137,8 @@ public class SlaveTLDR
         // Search
            moveclica(236, 649);
            robot.delay(7000);
-  // Excel
-     moveclica(1539, 179);
+	// Excel
+	   moveclica(1539, 179);
            robot.delay(5000);
         // Abre o arquivo
            moveclica(1036, 840);
@@ -148,19 +148,74 @@ public class SlaveTLDR
         // Arrasta pra maximizar
            //arrasta(1281, 113, 1072, 1);
         // Copia cada um
-           clicadireita(461, 177);
+           clicadireita(458, 177);
            moveclica(521,221);
            String tpq = captureclipboard();
-           clicadireita(460, 198);
+           clicadireita(458, 198);
            moveclica(516,229);
            String defect = captureclipboard();
-           clicadireita(463, 340);
+           clicadireita(458, 340);
            moveclica(511, 371);
            String ppm = captureclipboard();
            
-           acessa();
+               
+        // Indo pegar o Rework
+           robot.mouseMove(101,885);
+	   robot.delay(2000);
+       // Seleciona a terceira aba (Local View)
+           moveclica(516, 785);
+           robot.delay(1000);
+       // Production Preparation
+           moveclica(305, 70);
+           robot.delay(1000);
+       // Rework (W/O)
+           moveclica(258, 212);
+           robot.delay(10000);
+       // Clica em Rework
+           moveclica(479, 187);
+           robot.delay(2000);
+       // Clica em Status
+           moveclica(194, 354);
+       // Clica em ALL
+           moveclica(168, 381);
+       // Clica em AA1
+           moveclica(166, 425);
+       // Clica em algum lugar
+           moveclica(89, 538);
+       // Clica em Search
+           moveclica(247, 492);
+           robot.delay(5000);
+           moveclica(1466, 173);
+           robot.delay(5000);
            
-     type("INSERT INTO tldr");
+           moveclica(1041, 844);
+           robot.delay(5000);
+           
+           moveclica(794, 69);
+           leftClick();
+           
+           moveclica(777, 756);
+           leftClick();
+           leftClick();
+           robot.keyPress(KeyEvent.VK_EQUALS);
+       type("soma");
+       abrirParenteses();
+       type("N2");
+       doispontos();
+       type("N25");
+       robot.keyPress(KeyEvent.VK_ENTER);
+       robot.keyRelease(KeyEvent.VK_ENTER);
+       
+       clicadireita(789,751);
+       robot.delay(300);
+       moveclica(897, 432);
+       robot.delay(1000);
+       String rework = captureclipboard();
+       String ppm2 = Integer.toString(Math.round((Float.parseFloat(rework)/Float.parseFloat(tpq))*1000000));
+       acessa();
+       
+           
+	   type("INSERT INTO tldr");
            underline();
            type("w ");
            abrirParenteses();
@@ -191,9 +246,41 @@ public class SlaveTLDR
            type(year);
            fecharParenteses();
            pontoevirgula();
-           moveclica(1531, 537);
            
-  // Fim
+           type("INSERT INTO ifrr");
+           underline();
+           type("w ");
+           abrirParenteses();
+           type("tpq");
+           virgula();
+           type("rework");
+           virgula();
+           type("ppm");
+           virgula();
+           type("week");
+           virgula();
+           type("month");
+           virgula();
+           type("year");
+           fecharParenteses();
+           type(" VALUES");
+           abrirParenteses();
+           type(tpq);
+           virgula();
+           type(rework);
+           virgula();
+           type(ppm);
+           virgula();
+           type(week);
+           virgula();
+           type(month);
+           virgula();
+           type(year);
+           fecharParenteses();
+           pontoevirgula();
+           moveclica(1533, 533);
+           
+	// Fim
   }
   
   private void leftClick()
@@ -214,16 +301,16 @@ public class SlaveTLDR
   {
     robot.mousePress(InputEvent.BUTTON3_MASK);
     robot.delay(200);
-  robot.mouseRelease(InputEvent.BUTTON3_MASK);
+	robot.mouseRelease(InputEvent.BUTTON3_MASK);
     robot.delay(200);
   }
   
   private void apagar()
   {
-  robot.keyPress(KeyEvent.VK_BACK_SPACE);
-  robot.delay(100);
-  robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-  robot.delay(100);
+	robot.keyPress(KeyEvent.VK_BACK_SPACE);
+	robot.delay(100);
+	robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+	robot.delay(100);
   }
   
   private void type(int i)
@@ -312,13 +399,13 @@ public class SlaveTLDR
   
   private void acessa(){
               // Vai no IE
-     robot.mouseMove(87,875);
-     robot.delay(3000);
+	   robot.mouseMove(87,875);
+	   robot.delay(3000);
            moveclica(133, 780);
-  // Acessa o "bd_lg" do BD
+	// Acessa o "bd_lg" do BD
            moveclica(70, 185);
-     robot.delay(7000);
-  // Clica em "SQL"
+	   robot.delay(7000);
+	// Clica em "SQL"
            moveclica(387, 96);
            robot.delay(2000);
            moveclica(470, 290);
