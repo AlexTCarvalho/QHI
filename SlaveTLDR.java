@@ -89,9 +89,9 @@ public class SlaveTLDR
           
            // Clica no GMES
           // Se for a Vanessa, é esse
-           moveclica(1435, 371); 
+           //moveclica(1435, 371); 
            // Se for a Lane, é esse
-           //moveclica(1466, 410);
+           moveclica(1466, 410);
            
            robot.delay(40000);
            // Caso tenham avisos
@@ -212,6 +212,7 @@ public class SlaveTLDR
        robot.delay(700);
        String rework = captureclipboard();
        String ppm2 = Integer.toString(Math.round((Float.parseFloat(rework)/Float.parseFloat(tpq))*1000000));
+       
        acessa();
        
            
@@ -251,9 +252,9 @@ public class SlaveTLDR
            underline();
            type("w ");
            abrirParenteses();
-           type("tpq");
-           virgula();
            type("rework");
+           virgula();
+           type("tpq");
            virgula();
            type("ppm");
            virgula();
@@ -265,9 +266,9 @@ public class SlaveTLDR
            fecharParenteses();
            type(" VALUES");
            abrirParenteses();
-           type(tpq);
-           virgula();
            type(rework);
+           virgula();
+           type(tpq);
            virgula();
            type(ppm2);
            virgula();

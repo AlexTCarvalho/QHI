@@ -63,9 +63,9 @@ public class SlavePRR
 	   
 	  // Clica no GMES
           // Se for a Vanessa, é esse
-           moveclica(1435, 371); 
+           //moveclica(1435, 371); 
            // Se for a Lane, é esse
-           //moveclica(1466, 410);
+           moveclica(1466, 410);
 	   robot.delay(25000);
            
            // Caso tenham avisos
@@ -176,9 +176,9 @@ public class SlavePRR
            underline();
            type("w ");
            abrirParenteses();
-           type("tpq");
-           virgula();
            type("defect");
+           virgula();
+           type("tpq");
            virgula();
            type("ppm");
            virgula();
@@ -190,9 +190,9 @@ public class SlavePRR
            fecharParenteses();
            type(" VALUES");
            abrirParenteses();
-           type(prodquant);
-           virgula();
            type(ppq);
+           virgula();
+           type(prodquant);
            virgula();
            type(ppm);
            virgula();
