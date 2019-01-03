@@ -22,37 +22,37 @@ public class SlavePRR
 
   public static void main(String[] args) throws Exception
   {
-  new SlavePRR();  
+	new SlavePRR();  
   }
   
   private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
-  
-  private static String captureclipboard() throws UnsupportedFlavorException, IOException {
-    try {
-      if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
-        return clipboard.getData(DataFlavor.stringFlavor).toString();
-      else
-        return "";
-    } catch (IllegalStateException e) {
-      System.out.println("\n> A Area de TransferÃªncia estÃ¡ indisponÃ­vel neste instante: "+e);
-      sleep(100); 
-      return captureclipboard(); 
-    }
-  }
+	
+	private static String captureclipboard() throws UnsupportedFlavorException, IOException {
+		try {
+			if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor))
+				return clipboard.getData(DataFlavor.stringFlavor).toString();
+			else
+				return "";
+		} catch (IllegalStateException e) {
+			System.out.println("\n> A Area de Transferência está indisponível neste instante: "+e);
+			sleep(100); 
+			return captureclipboard(); 
+		}
+	}
 
-  private static void sleep(long millissegundos) {
-    try {
-      Thread.sleep(millissegundos);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-  }
+	private static void sleep(long millissegundos) {
+		try {
+			Thread.sleep(millissegundos);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
   
   public SlavePRR() throws Exception
   {
         Date data = new Date();
         Calendar cal = Calendar.getInstance();
-      cal.setTime(data);
+    	cal.setTime(data);
         String week = Integer.toString(cal.get(Calendar.WEEK_OF_YEAR));
         String month = Integer.toString(cal.get(Calendar.MONTH)+1);
         String year = Integer.toString(cal.get(Calendar.YEAR));
@@ -60,13 +60,13 @@ public class SlavePRR
            robot.mouseMove(96, 887);
            robot.delay(2000);
            moveclica(341, 778);
-     
-    // Clica no GMES
-          // Se for a Vanessa, é esse
-           //moveclica(1435, 371); 
-           // Se for a Lane, é esse
-           moveclica(1466, 410);
-     robot.delay(45000);
+	   
+	  // Clica no GMES
+          // Se for a Vanessa, � esse
+           moveclica(1435, 371); 
+           // Se for a Lane, � esse
+           //moveclica(1466, 410);
+	   robot.delay(25000);
            
            // Caso tenham avisos
            moveclica(448, 133);
@@ -74,61 +74,62 @@ public class SlavePRR
            moveclica(439, 127);
            moveclica(419, 109);
 
-  // Clica na coisa no canto direito
-     moveclica(1589, 480);
-     robot.delay(2000);
+	// Clica na coisa no canto direito
+	   moveclica(1589, 480);
+	   robot.delay(2000);
            
 
-  // Seleciona Global View
-     
-     moveclica(1555, 182);
+	// Seleciona Global View
+	   
+	   moveclica(1555, 182);
            robot.delay(8000);
            moveclica(943, 450);
-           robot.delay(37000);
+           robot.delay(27000);
            
-  // Clica no KPI de cima
-     
-     moveclica(226, 78);
-     robot.delay(2000);
+	// Clica no KPI de cima
+	   
+	   moveclica(226, 78);
+	   robot.delay(2000);
 
-  // Clica no [T] Main KPI Trend
-     moveclica(242, 186);
-     robot.delay(30000);
+	// Clica no [T] Main KPI Trend
+	   moveclica(242, 186);
+	   robot.delay(20000);
 
-  // Clica em Weekly
-     moveclica(161, 347);
-     robot.delay(5000);
-  // Clica em Final Line
-     moveclica(211, 511);
-     robot.delay(4000);
-  // Clica em Search
-     moveclica(245, 672);
-           robot.delay(15000);
-  // Clica no Excel
-     moveclica(1360, 179);
+	// Clica em Weekly
+	   moveclica(161, 347);
+	   robot.delay(3000);
+	// Clica em Final Line
+	   moveclica(211, 511);
+	   robot.delay(2000);
+	// Clica em Search
+	   moveclica(245, 672);
+           robot.delay(12000);
+	// Clica no Excel
+	   moveclica(1360, 179);
            robot.delay(7000);
-  // Clica em Abrir
-     moveclica(1035, 837);
-     leftClick();
-     leftClick();
+	// Clica em Abrir
+	   moveclica(1035, 837);
+	   leftClick();
+	   leftClick();
            robot.delay(5000);
-  // Clica na CÃ©lula e copiar
+	// Clica na Célula e copiar
            //arrasta(1045, 46, 1025, 1);
-           clicadireita(547, 196);
+           clicadireita(540, 196);
+           robot.delay(2000);
            moveclica(614, 233);
       
-     String prodquant = captureclipboard();
-  
-     robot.mouseMove(101,885);
-     robot.delay(2000);
+	   String prodquant = captureclipboard();
+	
+	   robot.mouseMove(101,885);
+	   robot.delay(2000);
        // Seleciona a terceira aba (Local View)
            moveclica(516, 785);
       robot.delay(1000);
        // Process Quality
-       moveclica(899, 82);
+       moveclica(781, 78);
        robot.delay(100);
        // Return Defect
-       moveclica(988,188);
+       moveclica(954,182);
        robot.delay(5000);
        // Clica em Status
        moveclica(223, 519);
@@ -137,7 +138,7 @@ public class SlavePRR
        // Clica em Search
        moveclica(252, 682);
        
-       robot.delay(10000);
+       robot.delay(15000);
        // Clica em Excel
        moveclica(1446, 174);
        robot.delay(5000);
@@ -147,8 +148,8 @@ public class SlavePRR
        leftClick();
        
        robot.delay(7000);
-       // ATÉ AQUI TAVA TUDO BEM
-       // Habilitar edição
+       // AT� AQUI TAVA TUDO BEM
+       // Habilitar edi��o
        //arrasta(1281, 113, 1072, 1);
        moveclica(833, 59);
        leftClick();
@@ -164,20 +165,20 @@ public class SlavePRR
        type("Z25");
        robot.keyPress(KeyEvent.VK_ENTER);
        robot.keyRelease(KeyEvent.VK_ENTER);
-       clicadireita(972, 726);
+       clicadireita(980, 726);
        moveclica(1063, 406);
        String ppq = captureclipboard();
        String ppm = Integer.toString(Math.round((Float.parseFloat(ppq)/Float.parseFloat(prodquant))*1000000));
        
        acessa();
        
-     type("INSERT INTO prr");
+	   type("INSERT INTO prr");
            underline();
            type("w ");
            abrirParenteses();
-           type("prodquant");
+           type("tpq");
            virgula();
-           type("ppq");
+           type("defect");
            virgula();
            type("ppm");
            virgula();
@@ -204,14 +205,14 @@ public class SlavePRR
            pontoevirgula();
            moveclica(1533, 533);
 
-  // Fim
+	// Fim
   }
   
   private void leftClick()
   {
     robot.mousePress(InputEvent.BUTTON1_MASK);
     robot.delay(200);
-  robot.mouseRelease(InputEvent.BUTTON1_MASK);
+	robot.mouseRelease(InputEvent.BUTTON1_MASK);
     robot.delay(200);
   }
   
@@ -225,16 +226,16 @@ public class SlavePRR
   {
     robot.mousePress(InputEvent.BUTTON3_MASK);
     robot.delay(200);
-  robot.mouseRelease(InputEvent.BUTTON3_MASK);
+	robot.mouseRelease(InputEvent.BUTTON3_MASK);
     robot.delay(200);
   }
   
   private void apagar()
   {
-  robot.keyPress(KeyEvent.VK_BACK_SPACE);
-  robot.delay(100);
-  robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-  robot.delay(100);
+	robot.keyPress(KeyEvent.VK_BACK_SPACE);
+	robot.delay(100);
+	robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+	robot.delay(100);
   }
   
   private void type(int i)
@@ -323,13 +324,13 @@ public class SlavePRR
   
   private void acessa(){
               // Vai no IE
-     robot.mouseMove(87,875);
-     robot.delay(3000);
+	   robot.mouseMove(87,875);
+	   robot.delay(3000);
            moveclica(133, 780);
-  // Acessa o "bd_lg" do BD
+	// Acessa o "bd_lg" do BD
            moveclica(70, 185);
-     robot.delay(5000);
-  // Clica em "SQL"
+	   robot.delay(5000);
+	// Clica em "SQL"
            moveclica(387, 96);
            moveclica(470, 290);
            robot.delay(500);

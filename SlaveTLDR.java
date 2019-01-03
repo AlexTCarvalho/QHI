@@ -119,7 +119,7 @@ public class SlaveTLDR
            robot.delay(2000);
         // Clica no Quality Trend
            moveclica(471, 158);
-	   robot.delay(8000);
+	   robot.delay(10000);
 
 	// Clica em Weekly
            moveclica(163, 345);
@@ -144,7 +144,7 @@ public class SlaveTLDR
            moveclica(1036, 840);
            leftClick();
            leftClick();
-           robot.delay(10000);
+           robot.delay(15000);
         // Arrasta pra maximizar
            //arrasta(1281, 113, 1072, 1);
         // Copia cada um
@@ -206,10 +206,10 @@ public class SlaveTLDR
        robot.keyPress(KeyEvent.VK_ENTER);
        robot.keyRelease(KeyEvent.VK_ENTER);
        
-       clicadireita(789,751);
+       clicadireita(791,753);
        robot.delay(300);
-       moveclica(897, 432);
-       robot.delay(1000);
+       moveclica(865, 436);
+       robot.delay(700);
        String rework = captureclipboard();
        String ppm2 = Integer.toString(Math.round((Float.parseFloat(rework)/Float.parseFloat(tpq))*1000000));
        acessa();
@@ -269,7 +269,7 @@ public class SlaveTLDR
            virgula();
            type(rework);
            virgula();
-           type(ppm);
+           type(ppm2);
            virgula();
            type(week);
            virgula();
