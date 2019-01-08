@@ -1,0 +1,113 @@
+FFR
+IF LY >= 10:
+	IF IMPR >= 24% return 5;
+	ELSE IF IMPR >= 16% return 4;
+	ELSE IF IMPR >= 8% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 5:
+	IF IMPR >= 18% return 5;
+	ELSE IF IMPR >= 12% return 4;
+	ELSE IF IMPR >= 6% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 2:
+	IF IMPR >= 9% return 5;
+	ELSE IF IMPR >= 5% return 4;
+	ELSE IF IMPR >= 3% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;ELSE:
+	IF IMPR >= 5% return 5;
+	ELSE IF IMPR >= 0% return 4;
+	ELSE return 1;
+ELSE:
+	IF IMPR >= 5% return 5;
+	ELSE IF IMPR >= 0% return 4;
+	ELSE return 1;
+---------------------------------
+FCR
+IF IMPR >= 2% return 5;
+ELSE IF IMPR >= 1% return 4;
+ELSE IF IMPR >= 0% return 3;
+ELSE IF IMPR >= -1% return 2;
+ELSE return 1;
+
+---------------------------------
+PRR
+IF LY >= 5000:
+	IF IMPR >= 24% return 5;
+	ELSE IF IMPR >= 16% return 4;
+	ELSE IF IMPR >= 8% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 3000:
+	IF IMPR >= 18% return 5;
+	ELSE IF IMPR >= 12% return 4;
+	ELSE IF IMPR >= 6% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 1000:
+	IF IMPR >= 9% return 5;
+	ELSE IF IMPR >= 5% return 4;
+	ELSE IF IMPR >= 3% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE:
+	IF IMPR >= 5% return 5;
+	ELSE IF IMPR >= 0% return 4;
+	ELSE return 1;
+
+---------------------------------
+TLDR
+
+IF LY >= 10000:
+	IF IMPR >= 24% return 5;
+	ELSE IF IMPR >= 16% return 4;
+	ELSE IF IMPR >= 8% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 5000:
+	IF IMPR >= 18% return 5;
+	ELSE IF IMPR >= 12% return 4;
+	ELSE IF IMPR >= 6% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 2000:
+	IF IMPR >= 9% return 5;
+	ELSE IF IMPR >= 5% return 4;
+	ELSE IF IMPR >= 3% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE:
+	IF IMPR >= 5% return 5;
+	ELSE IF IMPR >= 0% return 4;
+	ELSE return 1;
+
+---------------------------------
+IFRR
+IF LY >= 5:
+	IF IMPR >= 24% return 5;
+	ELSE IF IMPR >= 16% return 4;
+	ELSE IF IMPR >= 8% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 3:
+	IF IMPR >= 18% return 5;
+	ELSE IF IMPR >= 12% return 4;
+	ELSE IF IMPR >= 6% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE IF LY >= 1:
+	IF IMPR >= 9% return 5;
+	ELSE IF IMPR >= 5% return 4;
+	ELSE IF IMPR >= 3% return 3;
+	ELSE IF IMPR >= 0% return 2;
+	ELSE return 1;
+ELSE:
+	IF IMPR >= 5% return 5;
+	ELSE IF IMPR >= 0% return 4;
+	ELSE return 1;
+
+CC - target
+CR - pt 1 a 5
+(CR/5)*CC
