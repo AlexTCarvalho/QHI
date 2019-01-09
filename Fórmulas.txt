@@ -16,9 +16,6 @@ ELSE IF LY >= 2:
 	ELSE IF IMPR >= 5% return 4;
 	ELSE IF IMPR >= 3% return 3;
 	ELSE IF IMPR >= 0% return 2;
-	ELSE return 1;ELSE:
-	IF IMPR >= 5% return 5;
-	ELSE IF IMPR >= 0% return 4;
 	ELSE return 1;
 ELSE:
 	IF IMPR >= 5% return 5;

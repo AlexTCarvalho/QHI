@@ -31,7 +31,7 @@ public class SlaveFFR {
 			else
 				return "";
 		} catch (IllegalStateException e) {
-			System.out.println("\n> A Area de TransferÃªncia estÃ¡ indisponÃ­vel neste instante: "+e);
+			System.out.println("\n> A Area de Transferência está indisponível neste instante: "+e);
 			sleep(100); 
 			return captureclipboard(); 
 		}
@@ -53,24 +53,13 @@ public class SlaveFFR {
         String week = Integer.toString(cal.get(Calendar.WEEK_OF_YEAR));
         String month = Integer.toString(cal.get(Calendar.MONTH)+1);
         String year = Integer.toString(cal.get(Calendar.YEAR));
-           robot.mouseMove(96, 887);
-           robot.delay(2000);
-           moveclica(341, 778);
-	   
-	  // Clica no GQIS
-           moveclica(1435, 371);
-	   robot.delay(20000);
-           
-           // Caso tenham avisos
-           /*
-           moveclica(448, 133);
-           moveclica(431, 111);
-           moveclica(439, 127);
-           moveclica(419, 109);
-*/
+           // �cone do IE
+	   moveclica(84,881);
+        // Seleciona a terceira aba (GQIS)
+           moveclica(516, 785);
 	// Clica em FFR By Product
 	   moveclica(78, 139);
-	   robot.delay(20000);
+	   robot.delay(25000);
            
 
 	// Seleciona Prod Corp LUPA
@@ -90,7 +79,7 @@ public class SlaveFFR {
 	   moveclica(253, 302);
 	   robot.delay(15000);//1171401 1166 436 1106 598
 
-	// Clica no negócio de cima
+	// Clica no neg�cio de cima
 	   moveclica(1171, 401);
 	   robot.delay(1000);
 	// Clica em Private
@@ -122,7 +111,7 @@ public class SlaveFFR {
            moveclica(1110, 600);
            robot.delay(100);
            moveclica(146, 430);
-           robot.delay(10000);
+           robot.delay(20000);
            moveclica(1512, 806);
            // 573 395 652 410; 562 457 626 466; 573 474 659 486
            // 629 427; 647 487; 
