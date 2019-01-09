@@ -132,14 +132,14 @@ public class SlaveTLDR
         // Arrasta pra maximizar
            //arrasta(1281, 113, 1072, 1);
         // Copia cada um
-           clicadireita(458, 196);
-           moveclica(507,233);
+           clicadireita(451, 177);
+           moveclica(507,213);
            String tpq = captureclipboard();
-           clicadireita(458, 216);
-           moveclica(531,253);
+           clicadireita(458, 196);
+           moveclica(531,233);
            String defect = captureclipboard();
-           clicadireita(458, 356);
-           moveclica(531, 393);
+           clicadireita(458, 336);
+           moveclica(531, 373);
            String ppm = captureclipboard();
            
                
@@ -206,7 +206,11 @@ public class SlaveTLDR
        acessa();
        
            
-	   type("INSERT INTO tldr");
+	   type("INSERT INTO bd");
+           underline();
+           type("lg");
+           ponto();
+           type("tldr");
            underline();
            type("w ");
            abrirParenteses();
@@ -238,7 +242,11 @@ public class SlaveTLDR
            fecharParenteses();
            pontoevirgula();
            
-           type("INSERT INTO ifrr");
+           type("INSERT INTO bd");
+           underline();
+           type("lg");
+           ponto();
+           type("ifrr");
            underline();
            type("w ");
            abrirParenteses();
@@ -358,6 +366,11 @@ public class SlaveTLDR
     robot.keyRelease(KeyEvent.VK_COMMA);
   }
   
+  private void ponto(){
+    robot.keyPress(KeyEvent.VK_PERIOD);
+    robot.keyRelease(KeyEvent.VK_PERIOD);
+  }
+  
   private void pontoevirgula(){
       robot.keyPress(KeyEvent.VK_SEMICOLON);
       robot.keyRelease(KeyEvent.VK_SEMICOLON);
@@ -390,14 +403,11 @@ public class SlaveTLDR
   
   private void acessa(){
               // Vai no IE
-	   robot.mouseMove(87,875);
-	   robot.delay(3000);
+	   moveclica(87,875);
+	   robot.delay(500);
            moveclica(133, 780);
-	// Acessa o "bd_lg" do BD
-           moveclica(70, 185);
-	   robot.delay(7000);
 	// Clica em "SQL"
-           moveclica(387, 96);
+           moveclica(434, 96);
            robot.delay(2000);
            moveclica(470, 290);
   }

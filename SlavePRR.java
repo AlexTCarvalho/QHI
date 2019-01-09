@@ -97,9 +97,9 @@ public class SlavePRR
            robot.delay(12000);
 	// Clica na Célula e copiar
            //arrasta(1045, 46, 1025, 1);
-           clicadireita(540, 210);
+           clicadireita(530, 196);
            robot.delay(2000);
-           moveclica(614, 239);
+           moveclica(606, 230);
 	   String prodquant = captureclipboard();
            
            
@@ -131,7 +131,7 @@ public class SlavePRR
        
        robot.delay(15000);
        // Clica em Excel
-       moveclica(1446, 174);
+       moveclica(1460, 174);
        robot.delay(5000);
        // Clica em Abrir
        moveclica(1057, 849);
@@ -156,13 +156,17 @@ public class SlavePRR
        robot.keyPress(KeyEvent.VK_ENTER);
        robot.keyRelease(KeyEvent.VK_ENTER);
        clicadireita(960, 720);
-       moveclica(1081, 397);
+       moveclica(1054, 401);
        String ppq = captureclipboard();
        String ppm = Integer.toString(Math.round((Float.parseFloat(ppq)/Float.parseFloat(prodquant))*1000000));
        
        acessa();
        
-	   type("INSERT INTO prr");
+	   type("INSERT INTO bd");
+           underline();
+           type("lg");
+           ponto();
+           type("prr");
            underline();
            type("w ");
            abrirParenteses();
@@ -283,6 +287,11 @@ public class SlavePRR
     robot.keyRelease(KeyEvent.VK_COMMA);
   }
   
+  private void ponto(){
+    robot.keyPress(KeyEvent.VK_PERIOD);
+    robot.keyRelease(KeyEvent.VK_PERIOD);
+  }
+  
   private void pontoevirgula(){
       robot.keyPress(KeyEvent.VK_SEMICOLON);
       robot.keyRelease(KeyEvent.VK_SEMICOLON);
@@ -312,17 +321,15 @@ public class SlavePRR
       robot.delay(200);
   }
   
+  
   private void acessa(){
               // Vai no IE
-	   robot.mouseMove(87,875);
-	   robot.delay(3000);
+	   moveclica(87,875);
+	   robot.delay(500);
            moveclica(133, 780);
-	// Acessa o "bd_lg" do BD
-           moveclica(70, 185);
-	   robot.delay(5000);
 	// Clica em "SQL"
-           moveclica(387, 96);
-           robot.delay(1000);
+           moveclica(434, 96);
+           robot.delay(2000);
            moveclica(470, 290);
   }
 }

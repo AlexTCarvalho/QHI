@@ -129,7 +129,13 @@ public class SlaveFFR {
            rate = convdec(rate);
        acessa();
        
-	   type("INSERT INTO ffr");
+       
+      
+	   type("INSERT INTO bd");
+           underline();
+           type("lg");
+           ponto();
+           type("ffr");
            underline();
            type("w ");
            abrirParenteses();
@@ -250,6 +256,11 @@ public class SlaveFFR {
     robot.keyRelease(KeyEvent.VK_COMMA);
   }
   
+  private void ponto(){
+    robot.keyPress(KeyEvent.VK_PERIOD);
+    robot.keyRelease(KeyEvent.VK_PERIOD);
+  }
+  
   private void pontoevirgula(){
       robot.keyPress(KeyEvent.VK_SEMICOLON);
       robot.keyRelease(KeyEvent.VK_SEMICOLON);
@@ -279,18 +290,16 @@ public class SlaveFFR {
       robot.delay(200);
   }
   
+
   private void acessa(){
               // Vai no IE
-	   robot.mouseMove(87,875);
-	   robot.delay(3000);
+	   moveclica(87,875);
+	   robot.delay(500);
            moveclica(133, 780);
-	// Acessa o "bd_lg" do BD
-           moveclica(70, 185);
-	   robot.delay(5000);
 	// Clica em "SQL"
-           moveclica(387, 96);
+           moveclica(434, 96);
+           robot.delay(2000);
            moveclica(470, 290);
-           robot.delay(500);
   }
   
   private String convdec(String decimal){
